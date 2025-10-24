@@ -1,9 +1,9 @@
 <template>
-    <nav class="w-[300px] border-2 border-amber-800">
+    <nav>
         <ul @mouseover="() => (expanded = true)" @mouseleave="() => (expanded = false)">
             <li
                 class="w-24 h-20 bg-indigo-400 border-2 border-amber-300"
-                :class="{ 'w-62': expanded }"
+                :class="{ 'w-60': expanded }"
             >
                 <a href="#">
                     <router-link
@@ -15,83 +15,6 @@
                     </router-link></a
                 >
             </li>
-            <!--
-                <li class="w-30 h-20 bg-indigo-400 border-2 border-amber-300">
-                <a href="#" class="py-1.5 px-auto flex justify-center items-center">
-                    <router-link to="/"
-                        ><img
-                            src="../assets/ntu_coat.svg.png"
-                            alt="Welcome"
-                            class="h-16 w-12" /></router-link
-                ></a>
-            </li>
-            -->
-            <!--
-                <li class="w-30 h-20 bg-indigo-400 border-2 border-amber-300">
-                <a href="#" class="py-1.5 px-auto flex justify-center items-center">
-                    <router-link to="/"
-                        ><img
-                            src="../assets/ntu_coat.svg.png"
-                            alt="Welcome"
-                            class="h-16 w-12" /></router-link
-                ></a>
-            </li>
-            -->
-            <!--
-                <li class="w-30 h-20 bg-indigo-400 border-2 border-amber-300">
-                <a href="#" class="py-1.5 px-auto flex justify-center items-center">
-                    <router-link to="/"
-                        ><img
-                            src="../assets/ntu_coat.svg.png"
-                            alt="Welcome"
-                            class="h-16 w-12" /></router-link
-                ></a>
-            </li>
-            -->
-            <!--
-                <li class="w-30 h-20 bg-indigo-400 border-2 border-amber-300">
-                <a href="#" class="py-1.5 px-auto flex justify-center items-center">
-                    <router-link to="/"
-                        ><img
-                            src="../assets/ntu_coat.svg.png"
-                            alt="Welcome"
-                            class="h-16 w-12" /></router-link
-                ></a>
-            </li>
-            -->
-            <!--
-                <li class="w-30 h-20 bg-indigo-400 border-2 border-amber-300">
-                <a href="#" class="py-1.5 px-auto flex justify-center items-center">
-                    <router-link to="/"
-                        ><img
-                            src="../assets/ntu_coat.svg.png"
-                            alt="Welcome"
-                            class="h-16 w-12" /></router-link
-                ></a>
-            </li>
-            -->
-            <!--
-                <li class="w-30 h-20 bg-indigo-400 border-2 border-amber-300">
-                <a href="#" class="py-1.5 px-auto flex justify-center items-center">
-                    <router-link to="/"
-                        ><img
-                            src="../assets/ntu_coat.svg.png"
-                            alt="Welcome"
-                            class="h-16 w-12" /></router-link
-                ></a>
-            </li>
-            -->
-            <!--
-                <li class="w-30 h-20 bg-indigo-400 border-2 border-amber-300">
-                <a href="#" class="py-1.5 px-auto flex justify-center items-center">
-                    <router-link to="/"
-                        ><img
-                            src="../assets/ntu_coat.svg.png"
-                            alt="Welcome"
-                            class="h-16 w-12" /></router-link
-                ></a>
-            </li>
-            -->
         </ul>
 
         <ul v-show="expanded"></ul>
