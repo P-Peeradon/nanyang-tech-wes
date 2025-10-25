@@ -3,7 +3,7 @@ import VerticalNav from '../components/VerticalNav.vue';
 </script>
 
 <template>
-    <div class="flex flex-row bg-sky-300">
+    <div class="flex flex-row">
         <aside class="w-60">
             <VerticalNav />
         </aside>
