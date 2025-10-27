@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import VerticalNav from '../components/VerticalNav.vue';
+import LogoutButton from '../components/LogoutButton.vue';
 </script>
 
 <template>
@@ -15,11 +16,7 @@ import VerticalNav from '../components/VerticalNav.vue';
                     </h1>
                 </div>
                 <div class="w-1/6 flex justify-center">
-                    <button
-                        class="px-1 py-1 bg-red-700 text-white text-lg text-center font-semibold border-rose-400 rounded-2xl items-center"
-                    >
-                        Logout
-                    </button>
+                    <LogoutButton />
                 </div>
             </div>
         </main>
