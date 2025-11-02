@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import { Feature } from '../utility/feature';
 
 export const routeStore = defineStore('route', () => {
-    const routes = ref<Array<object>>([
+    const routes = ref<Array<Feature>>([
         {
             name: 'Welcome',
             path: '/',
