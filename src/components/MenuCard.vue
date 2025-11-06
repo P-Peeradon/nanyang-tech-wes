@@ -5,19 +5,26 @@
         </h3>
         <ul v-for="menu in props.menus" :key="menu">
             <li>
-                <a href="#" class="text-ssm lg:text-lg text-sky-200 ml-10 underline">{{ menu }}</a>
+                <router-link to="">
+                    <a href="#" class="text-ssm lg:text-lg text-sky-200 ml-10 underline">{{
+                        menu
+                    }}</a>
+                </router-link>
             </li>
         </ul>
     </div>
 </template>
 
 <script setup lang="ts">
+import { routeStore } from '../stores/direction';
+
 interface MenuProp {
     category: string;
     menus?: Array<string>;
 }
 
 const props = defineProps<MenuProp>();
+const routeState = routeStore();
 </script>
 
 <style></style>

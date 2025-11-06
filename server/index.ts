@@ -8,11 +8,11 @@ const PORT = 3000;
 
 // Function to get all features.
 app.get('/api/features', async (req: Request, res: Response) => {
-    const query: string = 'SELECT ft_name, ft_path FROM feature';
+    const q: string = 'SELECT ft_name, ft_view FROM feature';
     try {
-        const [features] = await pool.execute<Feature[]>(query);
+        const [rows, _fields] = await pool.query<Feature[]>(q);
 
-        res.status(200).send(features);
+        res.status(200).send(rows);
     } catch (error) {
         console.error('Error fetching features:', error);
         res.status(500).send('Database query failed');

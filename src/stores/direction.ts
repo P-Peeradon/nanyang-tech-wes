@@ -1,34 +1,25 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { Feature } from '../utility/feature';
+import axios from 'axios';
 
 export const routeStore = defineStore('route', () => {
-    const routes = ref<Array<Feature>>([
-        {
-            name: 'Welcome',
-            path: '/',
-        },
-        {
-            name: 'Profile Management',
-            path: '/profile',
-        },
-        {
-            name: 'Timetable Planner',
-            path: '/',
-        },
-        {
-            name: 'Add/Drop Course',
-            path: '/',
-        },
-    ]);
+    const routes = ref<Array<Feature>>([]);
 
     function getRoute(name: string) {
-        return routes.value.find((route: object) => route.name === name);
+        return routes.value.find((route: Feature) => route.name === name);
     }
 
-    function getAllRoutes() {
-        return;
+    async function getAllRoutes() {
+        try {
+            const { data } = await axios.get('/api/features');
+            routes.value = data.map(
+                (feature: object) => new Feature(feature.ft_name, feature.ft_path),
+            );
+        } catch (err) {
+            console.error(err);
+        }
     }
 
-    return { routes, getRoute, getAllRoutes };
+    return { getRoute, getAllRoutes };
 });
