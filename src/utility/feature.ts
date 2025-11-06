@@ -1,9 +1,17 @@
 export class Feature {
-    name: string;
-    path: string;
+    _name: string;
+    _view: string;
 
-    constructor(name: string, path: string) {
-        this.name = name;
-        this.path = path;
+    constructor(name: string, view: string) {
+        this._name = name ?? '';
+        this._view = view ?? 'home';
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    get view() {
+        return this._view;
     }
 }

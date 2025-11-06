@@ -14,7 +14,7 @@ export const routeStore = defineStore('route', () => {
         try {
             const { data } = await axios.get('/api/features');
             routes.value = data.map(
-                (feature: object) => new Feature(feature.ft_name, feature.ft_path),
+                (feature: object) => new Feature(feature.ft_name, feature.ft_view),
             );
         } catch (err) {
             console.error(err);

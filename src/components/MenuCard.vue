@@ -5,7 +5,7 @@
         </h3>
         <ul v-for="menu in props.menus" :key="menu">
             <li>
-                <router-link to="">
+                <router-link :to="{ name: routeState.getRoute(menu)?.view || 'home' }">
                     <a href="#" class="text-ssm lg:text-lg text-sky-200 ml-10 underline">{{
                         menu
                     }}</a>
