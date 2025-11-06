@@ -5,7 +5,7 @@
         </h3>
         <ul v-for="menu in props.menus" :key="menu">
             <li>
-                <a href="#" class="text-sky-200 ml-10 underline">{{ menu }}</a>
+                <a href="#" class="text-ssm lg:text-lg text-sky-200 ml-10 underline">{{ menu }}</a>
             </li>
         </ul>
     </div>

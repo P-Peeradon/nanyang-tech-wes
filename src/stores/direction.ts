@@ -18,7 +18,7 @@ export const routeStore = defineStore('route', () => {
         },
         {
             name: 'Add/Drop Course',
-            path: '',
+            path: '/',
         },
     ]);
 
@@ -26,5 +26,9 @@ export const routeStore = defineStore('route', () => {
         return routes.value.find((route: object) => route.name === name);
     }
 
-    return { routes, getRoute };
+    function getAllRoutes() {
+        return;
+    }
+
+    return { routes, getRoute, getAllRoutes };
 });
