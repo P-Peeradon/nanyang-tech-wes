@@ -15,6 +15,13 @@
     // "types": ["node"],
     // and npm install -D @types/node
 
+    // 1. MUST be set to true for the feature to be enabled
+    "allowImportingTsExtensions": true,
+
+    // 2. MUST be enabled (or "emitDeclarationOnly") because the .ts extension
+    // in the import path would not be resolvable in standard JavaScript output.
+    "noEmit": true,
+
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
@@ -39,6 +46,6 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   }
 }
