@@ -2,7 +2,7 @@ export class Feature {
     _name: string;
     _view: string;
 
-    constructor(name: string, view: string) {
+    constructor(name: string, view?: string) {
         this._name = name ?? '';
         this._view = view ?? 'home';
     }
