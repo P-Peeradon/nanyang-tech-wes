@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
 import pool from './database.ts';
-import { Feature } from './nanyang.ts';
+import type { Feature } from './nanyang.ts';
 
 const app = express();
 const PORT = 3000;

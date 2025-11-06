@@ -7,20 +7,18 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
-
-    // 1. MUST be set to true for the feature to be enabled
-    "allowImportingTsExtensions": true,
-
-    // 2. MUST be enabled (or "emitDeclarationOnly") because the .ts extension
-    // in the import path would not be resolvable in standard JavaScript output.
-    "noEmit": true,
 
     // Other Outputs
     "sourceMap": true,
