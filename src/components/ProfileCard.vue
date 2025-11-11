@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-row items-center w-[200px] h-[100px] md:w-[300px] md:h-[150px] xl:w-[600px] xl:h-[300px] border-2 border-black rounded-md px-5"
+        class="flex flex-row items-center w-[200px] h-[100px] md:w-[300px] md:h-[200px] xl:w-[600px] xl:h-[300px] border-2 border-black rounded-md px-5"
     >
         <div class="w-1/2 flex justify-center">
             <img

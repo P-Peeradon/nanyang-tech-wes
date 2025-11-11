@@ -20,6 +20,7 @@
             </div>
         </main>
     </div>
+    <div class="mb-3 lg:mb-6 xl:mb-10" />
 </template>
 
 <script setup lang="ts">
