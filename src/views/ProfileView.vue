@@ -14,6 +14,10 @@
                     <LogoutButton />
                 </div>
             </div>
+            <br />
+            <div class="">
+                <ProfileDisplay />
+            </div>
         </main>
     </div>
 </template>
@@ -21,10 +25,11 @@
 <script setup lang="ts">
 import VerticalNav from '../components/VerticalNav.vue';
 import LogoutButton from '../components/LogoutButton.vue';
+import ProfileDisplay from '../display/ProfileDisplay.vue';
 </script>
 
 <style scoped>
 .view {
-    width: calc(100vw - 240px);
+    width: calc(100vw - 280px);
 }
 </style>
