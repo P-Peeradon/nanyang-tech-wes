@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import pool from './database.ts';
+import pool from './services/db/database.ts';
 import type { Feature } from './nanyang.ts';
 
 const app = express();
