@@ -13,6 +13,10 @@ export const routeStore = defineStore('route', () => {
     async function getAllRoutes() {
         try {
             const { data } = await axios.get('/api/features');
+            if (!data) {
+                // Error
+            }
+
             routes.value = data.map(
                 (feature: object) => new Feature(feature.ft_name, feature.ft_view),
             );

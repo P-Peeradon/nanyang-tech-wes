@@ -1,10 +1,5 @@
 <template>
-    <button
-        class="px-1 py-1 bg-red-600 text-white text-lg text-center font-semibold border-rose-800 rounded-2xl items-center hover:cursor-pointer"
-        @click="handleLogout"
-    >
-        Logout
-    </button>
+    <button class="danger-button" @click="handleLogout">Logout</button>
 </template>
 
 <script setup lang="ts">
