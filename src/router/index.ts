@@ -9,13 +9,13 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component: HomeView,
-            meta: { layout: 'DefaultLayout', title: 'Home' },
+            meta: { layout: 'DefaultLayout', title: 'Welcome to Nanyang' },
         },
         {
             path: '/profile',
             name: 'profile',
             component: ProfileView,
-            meta: { layout: 'DefaultLayout', title: 'Profile' },
+            meta: { layout: 'DefaultLayout', title: 'Student Profile' },
         },
     ],
 });

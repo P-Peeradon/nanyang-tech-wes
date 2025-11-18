@@ -1,11 +1,4 @@
 <template>
-    <!--
-    <div>
-        <main>
-            <slot />
-        </main>
-    </div>
-    -->
     <WebHeader />
     <div class="flex flex-row justify-evenly">
         <aside class="w-60">
@@ -23,6 +16,7 @@
 
 <script setup lang="ts">
 import TitleSection from '../components/TitleSection.vue';
+import VerticalNav from '../components/VerticalNav.vue';
 import WebHeader from '../components/WebHeader.vue';
 import WebFooter from '../components/WebFooter.vue';
 
