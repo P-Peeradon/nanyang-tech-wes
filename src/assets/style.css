@@ -61,7 +61,7 @@
 
 @layer base {
     h1 {
-        @apply text-xl sm:text-3xl font-bold text-blue-700 text-center;
+        @apply text-xl sm:text-3xl font-bold text-imperial-500 text-center;
     }
 }
 
