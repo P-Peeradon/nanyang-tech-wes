@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-2 gap-3 xl:gap-10 justify-center">
+    <div class="grid grid-cols-2 gap-3 lg:gap-10 xl:gap-20 justify-center">
         <MenuCard
             :category="'Personal Account'"
             :menus="['Profile Management', 'Add/Drop Course']"

@@ -1,6 +1,6 @@
 <template>
     <WebHeader />
-    <div class="flex flex-row justify-evenly">
+    <div class="flex flex-row justify-between">
         <aside class="w-60">
             <VerticalNav />
         </aside>

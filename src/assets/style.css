@@ -69,4 +69,16 @@
     .danger-button {
         @apply px-1 py-1 bg-red-600 text-white text-lg text-center font-semibold border-rose-800 rounded-2xl items-center hover:cursor-pointer;
     }
+    .menu-background {
+        @apply bg-rose-800 aspect-square;
+    }
+    h3.menu-header {
+        @apply text-lg lg:text-2xl xl:text-4xl font-semibold text-gold-300 ml-5 lg:ml-10 xl:ml-20 my-3 lg:my-9 xl:my-15;
+    }
+    a.menu-link {
+        @apply text-sm lg:text-lg xl:text-3xl text-sky-200 ml-5 lg:ml-10 xl:ml-15 underline;
+    }
+    li.menu-list + li.menu-list {
+        @apply mt-1 lg:mt-4 xl:mt-8;
+    }
 }
