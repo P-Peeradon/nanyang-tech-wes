@@ -1,4 +1,4 @@
-import { createPool } from 'mysql2/promise';
+const { createPool } = require('mysql2/promise');
 import type { Pool, PoolOptions } from 'mysql2/promise';
 
 // 1. Configure Connection Options

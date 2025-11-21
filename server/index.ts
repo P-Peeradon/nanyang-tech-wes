@@ -1,23 +1,18 @@
-import express from 'express';
-import type { Request, Response } from 'express';
-import pool from './services/db/database.ts';
-import type { Feature } from './nanyang.ts';
+const express = require('express');
+const cors = require('cors');
+const { errorHandler } = require('./middleware/middleware.ts');
+const routes = require('./routes/routes.ts');
 
 const app = express();
 const PORT = 3000;
 
-// Function to get all features.
-app.get('/api/features', async (req: Request, res: Response) => {
-    const q: string = 'SELECT ft_name, ft_view FROM feature';
-    try {
-        const [rows, _fields] = await pool.query<Feature[]>(q);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors({ credentials: true, origin: ['http://localhost:5173']}));
 
-        res.status(200).send(rows);
-    } catch (error) {
-        console.error('Error fetching features:', error);
-        res.status(500).send('Database query failed');
-    }
-});
+app.use('/api', routes);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);

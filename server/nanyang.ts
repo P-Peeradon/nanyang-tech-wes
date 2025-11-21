@@ -4,4 +4,8 @@ import type { RowDataPacket } from 'mysql2/promise';
 export interface Feature extends RowDataPacket {
     ft_name: string;
     ft_view: string;
-}
+};
+
+export interface Credential extends RowDataPacket {
+    
+};
