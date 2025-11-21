@@ -1,12 +1,13 @@
 const { createPool } = require('mysql2/promise');
 import type { Pool, PoolOptions } from 'mysql2/promise';
+require('dotenv');
 
 // 1. Configure Connection Options
 const access: PoolOptions = {
-    host: 'localhost',
-    user: 'nanyang60',
-    password: 'ntusg60',
-    database: 'nanyang_stars',
+    host: process.env.MYSQL_HOST ?? '',
+    user: process.env.MYSQL_USER ?? '',
+    password: process.env.MYSQL_PASSWORD ?? '',
+    database: process.env.MYSQL_DATABASE ?? '',
 };
 
 // 2. Create the Connection Pool

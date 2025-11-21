@@ -7,5 +7,7 @@ export interface Feature extends RowDataPacket {
 };
 
 export interface Credential extends RowDataPacket {
-    
+    std_id: string;
+    std_email: string;
+    std_password: string;
 };
