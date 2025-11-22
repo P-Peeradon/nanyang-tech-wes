@@ -73,7 +73,7 @@
         @apply bg-rose-800 aspect-square;
     }
     h3.menu-header {
-        @apply text-lg lg:text-2xl xl:text-4xl font-semibold text-gold-300 ml-5 lg:ml-10 xl:ml-20 my-3 lg:my-9 xl:my-15;
+        @apply text-lg lg:text-2xl xl:text-4xl font-semibold text-gold-300 ml-7 lg:ml-12 xl:ml-17 my-3 lg:my-9 xl:my-15;
     }
     a.menu-link {
         @apply text-sm lg:text-lg xl:text-3xl text-sky-200 ml-5 lg:ml-10 xl:ml-15 underline;
