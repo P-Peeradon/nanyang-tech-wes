@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ProfileView from '../views/ProfileView.vue';
+import LoginView from '../views/LoginView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,12 @@ const router = createRouter({
             component: ProfileView,
             meta: { layout: 'DefaultLayout', props: { title: 'Student Profile' } },
         },
+        {
+            path: '/login',
+            name: 'login',
+            component: LoginView,
+            meta: { layout: 'BlankLayout' },
+        }
     ],
 });
 

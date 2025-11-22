@@ -15,4 +15,11 @@ export interface Credential extends RowDataPacket {
 
 export interface AuthenticatedRequest extends Request {
     user?: any;
-}
+};
+
+export interface StudentProfile extends RowDataPacket {
+    std_id: string;
+    std_fname: string;
+    std_lname: string;
+    std_program: string;
+};
