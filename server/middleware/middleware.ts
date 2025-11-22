@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from "express"
 import { HttpError } from "../model/error.js";
 import jwt from 'jsonwebtoken';
 import type { AuthenticatedRequest } from "../nanyang.js";
-require('dotenv/config');
+import "dotenv/config.js";
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader: string | undefined = (req.headers.authorization);
