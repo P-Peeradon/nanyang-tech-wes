@@ -6,7 +6,7 @@ import { fetchFeatures, loginUser, registerUser } from '../controller/SessionCon
 const router = express.Router();
 
 router.get('/features', fetchFeatures);
-router.post('/register', registerUser)
+router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 export default router;

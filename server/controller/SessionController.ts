@@ -65,7 +65,7 @@ export const fetchFeatures = async (req: Request, res: Response, next: NextFunct
     try {
         const [rows, _fields] = await pool.query<FeatureRoute[]>(q);
 
-        res.status(200).send(rows);
+        res.status(200).json(rows);
     } catch (err: any) {
         return next(new HttpError(err?.message ?? 'Error in fetching features', 500));
     }

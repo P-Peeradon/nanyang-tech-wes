@@ -6,9 +6,15 @@ import router from './routes/routes.js';
 const app: Express = express();
 const PORT: number = 3000;
 
+app.use(cors(
+    { 
+        credentials: true, 
+        origin: ['http://localhost:5173'], 
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+    }
+));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ credentials: true, origin: ['http://localhost:5173']}));
 
 app.use('/api', router);
 

@@ -12,12 +12,13 @@ export const routeStore = defineStore('route', () => {
 
     async function getAllRoutes() {
         try {
-            const { data } = await axios.get('/api/features');
-            if (!data) {
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/features`);
+            if (!response?.data) {
                 throw Error("Data does not exist.");
             }
+            console.log(response?.data);
 
-            routes.value = data.map(
+            routes.value = response?.data.map(
                 (feature: object) => new Feature(feature?.ft_name, feature?.ft_view),
             );
         } catch (err) {

@@ -1,5 +1,5 @@
 import mysql, { createPool, type Pool, type PoolOptions } from 'mysql2/promise.js';
-require('dotenv');
+import 'dotenv/config.js';
 
 // 1. Configure Connection Options
 const access: PoolOptions = {
