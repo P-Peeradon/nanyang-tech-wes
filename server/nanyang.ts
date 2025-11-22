@@ -2,7 +2,7 @@ import type { RowDataPacket } from 'mysql2/promise';
 import type { Request } from 'express';
 
 // Define the shape of your expected query results for better type safety
-export interface Feature extends RowDataPacket {
+export interface FeatureRoute extends RowDataPacket {
     ft_name: string;
     ft_view: string;
 };

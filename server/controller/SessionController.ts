@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 import { HttpError } from "../model/error.ts";
-import type { Feature, Credential } from "../nanyang.ts";
+import type { FeatureRoute, Credential } from "../nanyang.ts";
 import pool from "../db/database.ts";
 const bcrypt = require('bcryptjs');
 
@@ -62,7 +62,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
 export const fetchFeatures = async (req: Request, res: Response, next: NextFunction) => {
     const q: string = 'SELECT ft_name, ft_view FROM feature';
     try {
-        const [rows, _fields] = await pool.query<Feature[]>(q);
+        const [rows, _fields] = await pool.query<FeatureRoute[]>(q);
 
         res.status(200).send(rows);
     } catch (err: any) {
