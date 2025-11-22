@@ -10,7 +10,7 @@ export class Student {
         this.#lastName = lastName ?? '';
         this.#studentId = studentId ?? 'U0000000X';
         this.#program = program ?? 'Unknown';
-        this.#yearOfStudy = yearOfStudy ?? 0;
+        this.#yearOfStudy = yearOfStudy ?? 1;
     };
 
     get firstName(): string {

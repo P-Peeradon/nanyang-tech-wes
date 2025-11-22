@@ -1,4 +1,10 @@
 {
+  "ts-node": {
+    // This allows ts-node to run your code correctly even if imports are missing the .js extension
+    "experimental": {
+      "rewriteRelativeImportExtensions": true
+    }
+  },
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
@@ -8,8 +14,8 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "NodeNext", // NodeNext or Node16
+    "moduleResolution": "NodeNext", // NodeNext or Node16
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
@@ -26,8 +32,10 @@
     "declarationMap": true,
 
     // Stricter Typechecking Options
+    "outDir": "./dist",
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
 
     // Style Options
     // "noImplicitReturns": true,

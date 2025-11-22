@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { Feature } from '../utility/feature';
+import { Feature } from '../../../utility/feature';
 import axios from 'axios';
 
 export const routeStore = defineStore('route', () => {
@@ -14,11 +14,11 @@ export const routeStore = defineStore('route', () => {
         try {
             const { data } = await axios.get('/api/features');
             if (!data) {
-                // Error
+                throw Error("Data does not exist.");
             }
 
             routes.value = data.map(
-                (feature: object) => new Feature(feature.ft_name, feature.ft_view),
+                (feature: object) => new Feature(feature?.ft_name, feature?.ft_view),
             );
         } catch (err) {
             console.error(err);

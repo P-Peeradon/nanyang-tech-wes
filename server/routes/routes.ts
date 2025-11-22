@@ -1,6 +1,7 @@
-const express = require('express');
-const { fetchFeatures, loginUser, registerUser } = require('../controller/SessionController');
-const { authenticateToken } = require("../middleware/middleware");
+import express from 'express';
+// FIX: Change 'require' to 'import' statements
+import { fetchFeatures, loginUser, registerUser } from '../controller/SessionController.ts'; 
+// import { authenticateToken } from "../middleware/middleware.js";
 
 const router = express.Router();
 
