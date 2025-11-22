@@ -1,6 +1,6 @@
 import express from 'express';
 // FIX: Change 'require' to 'import' statements
-import { fetchFeatures, loginUser, registerUser } from '../controller/SessionController.ts'; 
+import { fetchFeatures, loginUser, registerUser } from '../controller/SessionController.js'; 
 // import { authenticateToken } from "../middleware/middleware.js";
 
 const router = express.Router();

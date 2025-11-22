@@ -1,30 +1,22 @@
 {
-  "ts-node": {
-    // This allows ts-node to run your code correctly even if imports are missing the .js extension
-    "experimental": {
-      "rewriteRelativeImportExtensions": true
-    }
-  },
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
-    // "outDir": "./dist",
+    "rootDir": "./",
+    "outDir": "./dist",
+    "esModuleInterop": true,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "target": "ES2022",
-    "module": "NodeNext", // NodeNext or Node16
-    "moduleResolution": "NodeNext", // NodeNext or Node16
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": true,
+    "module": "ES2022",
+    "target": "ESNext",
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
+    "forceConsistentCasingInFileNames": true,
+    
 
     // Other Outputs
     "sourceMap": true,
@@ -32,10 +24,8 @@
     "declarationMap": true,
 
     // Stricter Typechecking Options
-    "outDir": "./dist",
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
 
     // Style Options
     // "noImplicitReturns": true,
@@ -52,6 +42,6 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
   }
 }

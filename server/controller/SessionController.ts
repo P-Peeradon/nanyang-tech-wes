@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
-import { HttpError } from "../model/error.ts";
-import type { FeatureRoute, Credential } from "../nanyang.ts";
-import pool from "../db/database.ts";
+import { HttpError } from "../model/error.js";
+import type { FeatureRoute, Credential } from "../nanyang.js";
+import pool from "../db/database.js";
 const bcrypt = require('bcryptjs');
 
 // Handle Login User

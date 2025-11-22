@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express"
-import { HttpError } from "../model/error.ts";
+import { HttpError } from "../model/error.js";
 import jwt from 'jsonwebtoken';
-import type { AuthenticatedRequest } from "../nanyang.ts";
+import type { AuthenticatedRequest } from "../nanyang.js";
 require('dotenv/config');
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {

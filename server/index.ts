@@ -1,7 +1,7 @@
 import express, { type Express } from 'express';
 import cors from 'cors';
-import { errorHandler } from './middleware/middleware.ts';
-import router from './routes/routes.ts';
+import { errorHandler } from './middleware/middleware.js';
+import router from './routes/routes.js';
 
 const app: Express = express();
 const PORT: number = 3000;
