@@ -1,4 +1,4 @@
-import type { RowDataPacket } from 'mysql2/promise';
+import type { RowDataPacket } from 'mysql2/promise.js';
 import type { Request } from 'express';
 
 // Define the shape of your expected query results for better type safety

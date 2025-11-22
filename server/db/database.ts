@@ -1,5 +1,5 @@
-import { createPool } from 'mysql2/promise';
-import type { Pool, PoolOptions } from 'mysql2/promise';
+import { createPool } from 'mysql2/promise.js';
+import type { Pool, PoolOptions } from 'mysql2/promise.js';
 require('dotenv');
 
 // 1. Configure Connection Options

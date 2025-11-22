@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { HttpError } from "../model/error.js";
 import type { FeatureRoute, Credential } from "../nanyang.js";
 import pool from "../db/database.js";
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs';
 
 // Handle Login User
 // POST /login
@@ -38,7 +38,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
             return next(new HttpError("Invalid Credential", 401));
         }
 
-        const comparedPassword = await bcrypt.compare(password, student?.password);
+        const comparedPassword = await bcrypt.compare(password, student?.std_password);
         if (!comparedPassword) {
             return next(new HttpError("Invalid Credential", 401));
         }
