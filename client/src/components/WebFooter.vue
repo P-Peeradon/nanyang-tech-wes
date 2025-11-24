@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-screen half-view-width border-2 m-0 bg-gradient-to-tr from-black to-indigo-950 flex flex-row"
+        class="w-screen half-view-width border-2 m-0 bg-linear-to-tr from-black to-indigo-950 flex flex-row"
     >
         <div class="w-1/2 m-10">
             <img

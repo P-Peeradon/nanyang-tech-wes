@@ -4,12 +4,12 @@ import { onMounted, computed, type Component, type ComputedRef } from 'vue';
 import { routeStore } from './stores/direction';
 
 import DefaultLayout from './layouts/DefaultLayout.vue';
-// import BlankLayout from './layouts/BlankLayout.vue';
+import BlankLayout from './layouts/BlankLayout.vue';
 
 // A map to link layout names (strings) to the actual component imports
 const layoutComponents: Record<string, Component> = {
     DefaultLayout,
-    //BlankLayout,
+    BlankLayout,
 };
 
 const route: RouteLocationNormalizedLoaded = useRoute();
