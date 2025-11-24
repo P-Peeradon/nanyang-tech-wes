@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <WebHeader />
+    <WebHeader />
+    <main>
         <slot />
-        <WebFooter />
-    </div>
+    </main>
+    <WebFooter />
 </template>
 
 <script setup lang="ts">

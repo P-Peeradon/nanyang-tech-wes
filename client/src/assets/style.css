@@ -66,8 +66,29 @@
 }
 
 @layer components {
+    h2.login-header {
+        @apply text-center text-imperial-700 text-2xl bg-cardinal-200 drop-shadow-xs drop-shadow-gold-400;
+    }
+    .primary-button {
+        @apply px-4 py-2 bg-imperial-600 text-white text-lg text-center font-semibold border-indigo-800 border-2 rounded-2xl items-center drop-shadow hover:bg-imperial-800 hover:border-blue-600 hover:cursor-pointer;
+    }
+    .secondary-button {
+        @apply px-4 py-2 bg-gray-400 text-black text-lg text-center font-semibold border-gold-800 border-2 rounded-2xl items-center drop-shadow hover:bg-gray-500 hover:border-gold-800 hover:cursor-pointer;
+    }
     .danger-button {
-        @apply px-4 py-2 bg-cardinal-500 text-white text-lg text-center font-semibold border-rose-800 border-2 rounded-2xl items-center drop-shadow hover:bg-cardinal-800 hover:border-red-600 hover:cursor-pointer;
+        @apply px-4 py-2 bg-red-500 text-white text-lg text-center font-semibold border-rose-800 border-2 rounded-2xl items-center drop-shadow hover:bg-red-800 hover:border-rose-600 hover:cursor-pointer;
+    }
+    .danger-text {
+        @apply px-4 py-3 text-xl italic text-rose-600;
+    }
+    .login-form-input {
+        @apply px-6;
+    }
+    .login-form-input label {
+        @apply indent-8 font-light text-imperial-400 text-lg underline;
+    }
+    .login-form-input + .login-form-input {
+        @apply mt-5;
     }
     .menu-background {
         @apply bg-rose-800 aspect-square;
@@ -80,5 +101,8 @@
     }
     li.menu-list + li.menu-list {
         @apply mt-1 lg:mt-4 xl:mt-8;
+    }
+    form.login-form {
+        @apply w-3xl h-auto ;
     }
 }
