@@ -9,4 +9,12 @@ export class HttpError extends Error {
     get errorCode(): number {
         return this.#errorCode;
     };
+
+    public toJSON(): object {
+        return {
+            name: 'HttpError',
+            message: this.message,
+            errorCode: this.#errorCode, // Include the private field
+        };
+    }
 };

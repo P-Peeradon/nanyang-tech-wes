@@ -30,9 +30,12 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
 }
 
 export const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {
-    if (res.headersSent) {
-        return next(error)
+    const statusCode: number = error instanceof HttpError ? error.errorCode : 500;
+    const message: string = error.message || 'An unknown error occurred on the server.';
+
+    if (statusCode === 500) {
+        console.error(error.stack);
     }
 
-    res.status(error?.code ?? 500).json({ message: error.message ?? "An unknown error occurred."});
+    res.status(statusCode).json({ name: error.name || "ServerError", message: message });
 }
