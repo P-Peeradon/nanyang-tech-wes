@@ -43,7 +43,7 @@
             >
                 <a href="#">
                     <router-link
-                        to="/"
+                        to="/addDropCourse"
                         class="py-3 px-auto flex flex-row items-center"
                         :class="{ 'py-1.5 ps-7 gap-10': expanded, 'justify-center': !expanded }"
                         ><img

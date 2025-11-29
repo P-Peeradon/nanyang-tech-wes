@@ -102,6 +102,15 @@
     li.menu-list + li.menu-list {
         @apply mt-1 lg:mt-4 xl:mt-8;
     }
+    .course-search-bar {
+        @apply flex flex-row gap-x-10  justify-center text-center border-2 border-gold-500;
+    }
+    .course-input {
+        @apply flex flex-col gap-y-2 items-start;
+    }
+    .course-input input {
+        @apply border-2 border-gold-500 rounded-lg shadow-2xl shadow-imperial-900;
+    }
     form.login-form {
         @apply w-3xl h-auto ;
     }

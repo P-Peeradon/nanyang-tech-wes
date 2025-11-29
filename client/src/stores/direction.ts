@@ -15,9 +15,8 @@ export const routeStore = defineStore('route', () => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/features`);
             if (!response?.data) {
-                throw Error("Data does not exist.");
+                throw new Error("Data does not exist.");
             }
-            console.log(response?.data);
 
             routes.value = response?.data.map(
                 (feature: FeatureRoute) => new Feature(feature?.ft_name, feature?.ft_view),
