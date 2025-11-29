@@ -19,7 +19,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Ref } from 'vue';
 import axios from 'axios';
 
 interface LoginResponse {
@@ -34,9 +33,9 @@ interface ServerErrorResponse {
     errorCode: number;
 }
 
-const username: Ref<string> = ref('');
-const password: Ref<string> = ref('');
-const message: Ref<string> = ref('');
+const username = ref<string>('');
+const password = ref<string>('');
+const message = ref<string>('');
 
 const handleLogin = async () => {
     try {
