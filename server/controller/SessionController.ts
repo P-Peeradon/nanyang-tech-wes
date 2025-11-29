@@ -25,7 +25,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
         
         if (nanyangStudentEmail.test(username)) {
             query = 'SELECT std_id, std_email, std_password FROM student WHERE std_email = ?';
-            const [rows, _field]= await pool.execute<Credential[]>(query, [username]);
+            const [rows, _field] = await pool.execute<Credential[]>(query, [username]);
             student = rows[0];
         } else if (nanyangStudentId.test(username)) {
             query = 'SELECT std_id, std_email, std_password FROM student WHERE std_id = ?';

@@ -23,3 +23,9 @@ export interface StudentProfile extends RowDataPacket {
     std_lname: string;
     std_program: string;
 };
+
+export interface CourseProfile extends RowDataPacket {
+    cos_code: string;
+    cos_title: string;
+    cos_au: number;
+}
