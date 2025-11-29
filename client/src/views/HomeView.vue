@@ -7,7 +7,5 @@ import MenuDisplay from '../display/MenuDisplay.vue';
 </template>
 
 <style scoped>
-.view {
-    width: calc(100vw - 280px);
-}
+
 </style>

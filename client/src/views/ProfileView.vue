@@ -7,7 +7,4 @@ import ProfileDisplay from '../display/ProfileDisplay.vue';
 </template>
 
 <style scoped>
-.view {
-    width: calc(100vw - 280px);
-}
 </style>

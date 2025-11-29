@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { Feature } from '../../../utility/feature';
+import type { FeatureRoute } from '../../../server/nanyang'
 import axios from 'axios';
 
 export const routeStore = defineStore('route', () => {
@@ -19,7 +20,7 @@ export const routeStore = defineStore('route', () => {
             console.log(response?.data);
 
             routes.value = response?.data.map(
-                (feature: object) => new Feature(feature?.ft_name, feature?.ft_view),
+                (feature: FeatureRoute) => new Feature(feature?.ft_name, feature?.ft_view),
             );
         } catch (err) {
             console.error(err);
