@@ -11,7 +11,7 @@
                         class="py-3 px-auto flex flex-row items-center"
                         :class="{ 'py-1.5 ps-7 gap-10': expanded, 'justify-center': !expanded }"
                         ><img
-                            src="../assets/ntu_coat.svg.png"
+                            src="/nanyang_coat.png"
                             alt="Welcome"
                             class="h-8 w-6 lg:h-12 lg:w-9"
                         />
@@ -29,7 +29,7 @@
                         class="py-3 px-auto flex flex-row items-center"
                         :class="{ 'py-1.5 ps-7 gap-10': expanded, 'justify-center': !expanded }"
                         ><img
-                            src="../assets/account.png"
+                            src="/account.png"
                             alt="Profile"
                             class="h-8 w-6 lg:h-12 lg:w-9"
                         />
@@ -47,7 +47,7 @@
                         class="py-3 px-auto flex flex-row items-center"
                         :class="{ 'py-1.5 ps-7 gap-10': expanded, 'justify-center': !expanded }"
                         ><img
-                            src="../assets/google-docs.png"
+                            src="/google_docs.png"
                             alt="Enrolment"
                             class="h-8 w-6 lg:h-12 lg:w-9"
                         />

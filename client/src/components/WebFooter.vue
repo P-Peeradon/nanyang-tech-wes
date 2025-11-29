@@ -5,7 +5,7 @@
         <div class="w-1/2 m-10">
             <img
                 class="w-full h-full"
-                src="../assets/ntu_coat_w_name.png"
+                src="/nanyang_coat_w_name.png"
                 alt="Nanyang Technological University"
             />
         </div>
