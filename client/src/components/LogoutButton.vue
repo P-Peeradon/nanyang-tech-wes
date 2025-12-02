@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 const handleLogout = () => {
-    //Pass
+
 };
 </script>
 
