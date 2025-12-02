@@ -9,10 +9,26 @@ import type { CourseProfile } from "../nanyang.js";
 // Unprotected
 export const getCourses = async (req: Request, res: Response, next: NextFunction) => {
     try {   
-        const query1: string = "SELECT cos_code, cos_title, cos_au FROM course;"
-        const [rows, _field] = await pool.execute<CourseProfile[]>(query1);
+        const query: string = "SELECT cos_code, cos_title, cos_au FROM course;"
+        const [rows, _field] = await pool.execute<CourseProfile[]>(query);
 
         return res.status(200).json(rows);
+    } catch (err: any) {
+        return next(new HttpError(err));
+    }
+}
+
+export const createEnrolment = async (req: Request, res: Response, next: NextFunction) => {
+    const MAX_AU: number = 22;
+    
+    try {
+        // Check prerequisite
+
+        // Check academic unit exceed or not.
+
+        // Add to enrolment table.
+
+        // But send 202 as the status is not approved.
     } catch (err: any) {
         return next(new HttpError(err));
     }
