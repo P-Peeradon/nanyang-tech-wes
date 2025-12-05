@@ -26,7 +26,6 @@ import { enrolmentStore } from '../stores/stars';
 import axios from 'axios';
 import DataTable from 'primevue/datatable';
 import { computed, onMounted } from 'vue';
-import type { Enrolment } from '../../../utility/enrolment'
 
 const enrolmentState = enrolmentStore();
 const displayEnrolment = computed<object[]>(() => {
