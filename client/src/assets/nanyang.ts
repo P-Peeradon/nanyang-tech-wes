@@ -1,19 +1,11 @@
-import type { RowDataPacket } from 'mysql2/promise.js';
-
 // Define the shape of your expected query results for better type safety
-export interface FeatureRoute extends RowDataPacket {
+export interface FeatureRoute{
     ft_name: string;
     ft_view: string;
 };
 
-export interface Credential extends RowDataPacket {
-    std_id: string;
-    std_email: string;
-    std_password: string;
-};
-
 // Student DTO
-export interface StudentProfile extends RowDataPacket {
+export interface StudentProfile{
     std_id: string;
     std_fname: string;
     std_lname: string;
@@ -21,14 +13,14 @@ export interface StudentProfile extends RowDataPacket {
 };
 
 // Course DTO
-export interface CourseProfile extends RowDataPacket {
+export interface CourseProfile {
     cos_code: string;
     cos_title: string;
     cos_au: number;
 }
 
 // Enrolment DTO
-export interface MyEnrolmentProfile extends RowDataPacket {
+export interface MyEnrolmentProfile {
     cos_code: string;
     enrol_semester: number;
     enrol_year: number;
