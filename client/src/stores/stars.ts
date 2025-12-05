@@ -1,21 +1,24 @@
 import axios from "axios";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { Course } from '../../../utility/course.ts'
-import type { CourseProfile } from "../../../server/nanyang.ts";
+import { Enrolment } from '../../../utility/enrolment.ts'
+import type { CourseProfile, MyEnrolmentProfile } from "../assets/nanyang.ts";
 
 export const courseStore = defineStore('course', () => {
-    const allCourses = ref<Array<Course>>([]); // Collect all courses taught at NTU.
+    const allCourses = ref<Course[]>([]); // Collect all courses taught at NTU.
 
     async function getAllCourses() {
+
         try {
+
             const response =  await axios.get(`${import.meta.env.VITE_API_URL}/api/courses`);
-            if (!response?.data) {
-                throw new Error("Data does not exist.");
+            if (!response?.data || !Array.isArray(response.data)) {
+                throw new Error("Invalid or empty data received from the API.");
             }
 
-            allCourses.value = response?.data.map((course: CourseProfile) =>
-                new Course(course?.cos_code, course?.cos_title, course?.cos_au)
+            allCourses.value = response.data.map((course: CourseProfile) =>
+                new Course(course.cos_code, course.cos_title, course.cos_au)
             );
 
         } catch (err) {
@@ -23,5 +26,50 @@ export const courseStore = defineStore('course', () => {
         }
     }
 
-    return { allCourses, getAllCourses }
+    function resolveCourse(courseCode: string): Course {
+
+        const returnedCourse: Course = allCourses.value.find((course) => {
+            return course.code === courseCode;
+        }) ?? new Course('XX0000', 'Unknown', 0);
+
+        return returnedCourse;
+    }
+
+    return { allCourses, getAllCourses, resolveCourse };
+});
+
+export const enrolmentStore = defineStore('enrolment', () => {
+    const courseState = courseStore();
+
+    const myEnrolment = ref<Enrolment[]>([]); // Only the present semester.
+    const coursesData = computed<Course[]>(() => {
+        return myEnrolment.value.map((enrol) => courseState.resolveCourse(enrol.courseCode));
+    });
+
+    async function getMyEnrolment() {
+
+        const token: string | null = localStorage.getItem('authToken');
+        const NanyangID: string | null = localStorage.getItem('studentId');
+
+        try {
+
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/students/${NanyangID}/enrolment`, {
+                withCredentials: true, headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
+
+            if (!response?.data) {
+                throw new Error("Data does not exist.");
+            }
+
+            myEnrolment.value = response.data?.map((enrol: MyEnrolmentProfile) => new Enrolment(NanyangID ?? '', enrol.cos_code, enrol.enrol_year, enrol.enrol_semester));
+
+        } catch (err) {
+            console.error(err);
+        }
+
+    }
+
+    return { myEnrolment, coursesData, getMyEnrolment };
 })

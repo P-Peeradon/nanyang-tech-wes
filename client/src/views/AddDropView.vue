@@ -1,7 +1,7 @@
 <template>
     <div>
         <SearchCourseDisplay />
-        <hr class="my-12 border-2 border-black w-auto" />
+        <hr class="my-12 border-2 border-cardinal-600 w-auto" />
         <MyEnrolmentDisplay />
     </div>
 </template>
