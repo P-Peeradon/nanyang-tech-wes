@@ -1,7 +1,6 @@
 import type { Request, Response, NextFunction } from "express"
 import { HttpError } from "../model/error.js";
 import jwt from 'jsonwebtoken';
-import type { AuthenticatedRequest } from "../nanyang.js";
 import "dotenv/config.js";
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
@@ -18,12 +17,13 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
     if (!token) {
         return next(new HttpError("Unauthorized: Token is missing after 'Bearer '.", 401));
     }
+    
     jwt.verify(token, process.env.JWT_SECRET_KEY!, (err: any, info: any) => {
         if (err) {
             return next(new HttpError('Forbidden: Token invalid or expired.', 403));
         }
 
-        (req as AuthenticatedRequest).user = info;
+        req.body.user = info;
     });
     
     next();
