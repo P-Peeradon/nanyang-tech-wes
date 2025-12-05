@@ -1,14 +1,14 @@
 export class Student {
+    #studentId!: string;
     #firstName: string;
     #lastName: string;
-    #studentId: string;
     #program: string;
     #yearOfStudy: number;
 
-    constructor(firstName: string, lastName: string, studentId: string, program: string, yearOfStudy: number) {
-        this.#firstName = firstName ?? '';
-        this.#lastName = lastName ?? '';
-        this.#studentId = studentId ?? 'U0000000X';
+    constructor(studentId: string, firstName: string, lastName: string, program?: string, yearOfStudy?: number) {
+        this.#studentId = studentId;
+        this.#firstName = firstName;
+        this.#lastName = lastName;
         this.#program = program ?? 'Unknown';
         this.#yearOfStudy = yearOfStudy ?? 1;
     };

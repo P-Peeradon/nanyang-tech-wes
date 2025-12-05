@@ -1,5 +1,5 @@
 export class Course {
-    #code: string;
+    #code!: string;
     #title: string;
     #au: number;
     #prerequisite: Array<string>;
@@ -9,17 +9,17 @@ export class Course {
         this.#title = title;
         this.#au = au;
         this.#prerequisite = prerequisite ?? [];
-    }
-
-    get code() {
-        return this.#code;
     };
 
-    get title() {
+    get code(): string {
+        return this.#code;
+    }
+
+    get title(): string  {
         return this.#title;
     };
 
-    get au() {
+    get au(): number {
         return this.#au;
     };
 
