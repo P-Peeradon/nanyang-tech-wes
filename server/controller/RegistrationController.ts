@@ -2,8 +2,8 @@ import type { Request, Response, NextFunction } from "express";
 import { HttpError } from "../model/error.js";
 import pool from "../db/database.js";
 import type { CourseProfile, MyEnrolmentProfile } from "../nanyang.js";
-import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
-
+import jwt from "jsonwebtoken";
+const { JsonWebTokenError, TokenExpiredError } = jwt;
 
 // Get all courses taught at Nanyang
 // GET /courses

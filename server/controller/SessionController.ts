@@ -109,8 +109,8 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
         const salt = await bcrypt.genSalt(11);
         const hashedPassword = await bcrypt.hash(password, salt);
         const query: string = `INSERT INTO student (std_id, std_fname, std_lname, std_email, std_program, std_yearOfStudy, std_password)
-                                VALUES (?, ?, ?, ?, ?, ?, ?)`
-        await pool.execute(query, [studentId, firstName, lastName, email, program, yearOfStudy ?? 1, hashedPassword]);
+                                VALUES (?, ?, ?, ?, ?, ?, ?)`;
+        await pool.execute(query, [studentId, firstName, lastName, email, program, yearOfStudy, hashedPassword]);
 
         const newUser = { 
             firstName: firstName, 
