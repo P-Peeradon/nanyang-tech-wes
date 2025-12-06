@@ -22,6 +22,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { studentStore } from '../stores/profile';
 
 interface LoginResponse {
     token: string;
@@ -34,6 +36,9 @@ interface ServerErrorResponse {
     message: string;
     errorCode: number;
 }
+
+const studentState = studentStore();
+const router = useRouter();
 
 const username = ref<string>('');
 const password = ref<string>('');
@@ -52,6 +57,10 @@ const handleLogin = async () => {
         localStorage.setItem("authToken", token);
         localStorage.setItem("studentId", id);
         localStorage.setItem("NTUeMail", email);
+
+        await studentState.getStudentProfile();
+
+        router.push('/');
 
     } catch (err) {
         // 1. Check if the error is an Axios error
