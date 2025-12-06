@@ -17,9 +17,9 @@ export const studentStore = defineStore('student', () => {
             }
         });
 
-        const { std_id, std_fname, std_lname, std_program } = response.data;
+        const { std_id, std_fname, std_lname, std_program, std_yearOfStudy } = response.data;
 
-        studentData.value = new Student(std_id, std_fname, std_lname, std_program);
+        studentData.value = new Student(std_id, std_fname, std_lname, std_program, std_yearOfStudy);
 
     }
 
