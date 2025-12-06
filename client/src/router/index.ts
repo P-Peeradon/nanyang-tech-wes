@@ -11,27 +11,63 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component: HomeView,
-            meta: { layout: 'DefaultLayout', props: { title: 'Welcome to Nanyang' } },
+            meta: {
+                layout: 'DefaultLayout',
+                props: {
+                    title: 'Welcome to Nanyang'
+                },
+                requiresAuth: true
+            },
         },
         {
             path: '/profile',
             name: 'profile',
             component: ProfileView,
-            meta: { layout: 'DefaultLayout', props: { title: 'Student Profile' } },
+            meta: {
+                layout: 'DefaultLayout',
+                props: {
+                    title: 'Student Profile'
+                },
+                requiresAuth: true },
         },
         {
             path: '/login',
             name: 'login',
             component: LoginView,
-            meta: { layout: 'BlankLayout' },
+            meta: {
+                layout: 'BlankLayout',
+                requiresAuth: false
+            },
         },
         {
             path: '/addDropCourse',
             name: 'addDropCourse',
             component: AddDropView,
-            meta: { layout: 'DefaultLayout', props: { title: 'Add/Drop Course' } }
+            meta: {
+                layout: 'DefaultLayout',
+                props: {
+                    title: 'Add/Drop Course'
+                },
+                requiresAuth: true
+            }
         }
     ],
 });
+
+function isAuthenticated(): boolean {
+  return !!localStorage.getItem('authToken')
+}
+
+router.beforeEach(async (to, from, next) => {
+    if (!isAuthenticated() && to.name !== 'login') {
+        next({ name: 'login' });
+        return;
+    } else if (isAuthenticated() && to.name === 'login') {
+        next('/');
+        return;
+    }
+
+    next();
+})
 
 export default router;
