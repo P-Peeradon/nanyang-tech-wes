@@ -112,7 +112,14 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
                                 VALUES (?, ?, ?, ?, ?, ?, ?)`
         await pool.execute(query, [studentId, firstName, lastName, email, program, yearOfStudy ?? 1, hashedPassword]);
 
-        const newUser = { firstName: firstName, lastName: lastName, studentId: studentId, program: program, yearOfStudy: yearOfStudy};
+        const newUser = { 
+            firstName: firstName, 
+            lastName: lastName, 
+            studentId: studentId, 
+            email: email, 
+            program: program, 
+            yearOfStudy: yearOfStudy
+        };
         res.status(201).json(newUser);
     } catch (err: any) {
         return next(new HttpError(err?.message));

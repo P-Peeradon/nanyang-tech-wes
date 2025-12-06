@@ -20,6 +20,10 @@ app.use('/api', router);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
+    });
+}
+
+export default app;
