@@ -23,7 +23,7 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
             return next(new HttpError('Forbidden: Token invalid or expired.', 403));
         }
 
-        req.body.user = info;
+        (req as any).user = info;
     });
     
     next();
