@@ -42,13 +42,14 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 import { courseStore } from '../stores/stars';
 import axios from 'axios';
+import { Course } from '../../../utility/course';
 
 const token: string = localStorage.getItem('authToken') ?? '';
 
 const code = ref<string>('');
 const title = ref<string>('');
 const courses = computed(() => {
-    return courseState?.allCourses.filter((course) => {
+    return courseState?.allCourses.filter((course: Course) => {
         const matchesCode = course?.code.startsWith(code.value.toUpperCase());
         const matchesTitle = course?.title.toLowerCase().includes(title.value.toLowerCase());
 
@@ -61,7 +62,7 @@ const courseState = courseStore();
 const enrolInCourse = async (code: string) => {
     // Use API to create enrolment.
     try {
-        const response = await axios.post(`${process.env.VITE_API_URL}/api/enrolment/${code}`, {
+        const response = await axios.post(`${process.env.VITE_API_URL}/api/enrolment`, {
             withCredentials: true, headers: {
                 authorization: `Bearer ${token}`
             }
