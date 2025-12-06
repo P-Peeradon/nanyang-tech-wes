@@ -1,6 +1,6 @@
 export class Feature {
-    _name: string;
-    _view: string;
+    private _name: string;
+    private _view: string;
 
     constructor(name: string, view?: string) {
         this._name = name ?? '';

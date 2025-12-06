@@ -1,38 +1,38 @@
 export class Course {
-    #code!: string;
-    #title: string;
-    #au: number;
-    #prerequisite: Array<string>;
+    private _code!: string;
+    private _title: string;
+    private _au: number;
+    private _prerequisite: Array<string>;
 
     constructor(code: string, title: string, au: number, prerequisite?: Array<string>) {
-        this.#code = code;
-        this.#title = title;
-        this.#au = au;
-        this.#prerequisite = prerequisite ?? [];
+        this._code = code;
+        this._title = title;
+        this._au = au;
+        this._prerequisite = prerequisite ?? [];
     };
 
     get code(): string {
-        return this.#code;
+        return this._code;
     }
 
     get title(): string  {
-        return this.#title;
+        return this._title;
     };
 
     get au(): number {
-        return this.#au;
+        return this._au;
     };
 
     get prerequisite() {
-        return this.#prerequisite;
+        return this._prerequisite;
     };
 
     set title(newTitle: string) {
-        this.#title = newTitle;
+        this._title = newTitle;
     }
 
     set prerequisite(newPrerequisite: Array<string>) {
-        this.#prerequisite = newPrerequisite;
+        this._prerequisite = newPrerequisite;
     };
 
     addNewPrereq(prereqCode: string) {

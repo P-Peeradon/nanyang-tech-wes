@@ -1,39 +1,39 @@
 export class Enrolment {
-    #studentId!: string;
-    #courseCode!: string;
+    private _studentId!: string;
+    private _courseCode!: string;
     // #status: any;
-    #year: number;
-    #semester: number;
-    #timestamp: Date;
-    #remark?: string | undefined;
+    private _year: number;
+    private _semester: number;
+    private _timestamp: Date;
+    private _remark?: string | undefined;
 
     constructor(studentId: string, courseCode: string, year?: number, semester?: number, remark?: string) {
-        this.#studentId = studentId;
-        this.#courseCode = courseCode;
-        this.#year = year ?? 1965;
-        this.#semester = semester ?? 1;
-        this.#timestamp = new Date();
-        this.#remark = remark;
+        this._studentId = studentId;
+        this._courseCode = courseCode;
+        this._year = year ?? 1965;
+        this._semester = semester ?? 1;
+        this._timestamp = new Date();
+        this._remark = remark;
     };
 
     get studentId(): string {
-        return this.#studentId;
+        return this._studentId;
     };
 
     get courseCode(): string {
-        return this.#courseCode;
+        return this._courseCode;
     };
 
     get year(): number {
-        return this.#year;
+        return this._year;
     };
 
     get semester(): number {
-        return this.#semester;
+        return this._semester;
     };
 
     get remark(): string {
-        return this.#remark ?? '';
+        return this._remark ?? '';
     };
 
 }
