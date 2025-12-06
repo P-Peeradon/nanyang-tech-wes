@@ -38,19 +38,19 @@ export const getCourse = async (req: Request, res: Response, next: NextFunction)
 
 // Get all enrolment entries made my that student
 // GET /students/:id/enrolment
-// Unprotected
+// Protected
 export const getStudentEnrolments = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
 
     try {
-        const { user } = req.body;
+        const user: object  = (req as any).user ?? {};
 
-        if (!user || user?.id !== id) {
+        if (!user) {
             return next(new HttpError("Unauthorised access to student's enrolment data", 401));
         }
 
         // If match, get the student data
-        const query = 'SELECT cos_code, enrol_semester, enrol_year, enrol_remark FROM enrolment WHERE stu_id = ?';
+        const query = 'SELECT cos_code, enrol_semester, enrol_year, enrol_remark FROM enrolment WHERE std_id = ?';
         const [rows, _field] = await pool.execute<MyEnrolmentProfile[]>(query, [id]);
 
         res.status(200).json(rows);
