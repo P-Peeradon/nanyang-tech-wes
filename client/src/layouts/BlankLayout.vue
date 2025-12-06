@@ -1,6 +1,6 @@
 <template>
     <WebHeader />
-    <main>
+    <main class="bg-imperial-800">
         <slot />
     </main>
     <WebFooter />

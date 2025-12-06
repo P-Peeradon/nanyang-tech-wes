@@ -1,5 +1,6 @@
 <template>
-    <form class="login-form" @submit.prevent="handleLogin">
+    <div class="container">
+        <form class="login-form" @submit.prevent="handleLogin">
         <h2 class="login-header">Login to Nanyang WES</h2>
         <p class="danger-text">{{ message }}</p>
         <div class="login-form-input">
@@ -11,10 +12,11 @@
             <input type="password" v-model="password" />
         </div>
         <div class="login-form-button">
-            <button type="submit">Login</button>
-            <button>Forgot Password</button>
+            <button class="primary-button" type="submit">Login</button>
+            <button class="secondary-button">Forgot Password</button>
         </div>
     </form>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -74,6 +76,11 @@ const handleLogin = async () => {
 
 </script>
 
-<style>
-
+<style scoped>
+.container {
+    width: 100vw;
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+}
 </style>

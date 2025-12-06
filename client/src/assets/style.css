@@ -69,8 +69,11 @@
 }
 
 @layer components {
+    form.login-form {
+        @apply bg-linear-to-tr from-cardinal-400 via-rose-300 to-white w-4/6 self-center rounded-4xl ;
+    }
     h2.login-header {
-        @apply text-center text-imperial-700  bg-cardinal-200  drop-shadow-gold-400;
+        @apply text-center text-gold-800 mt-4;
     }
     h2.course-header {
         @apply text-gold-600 drop-shadow-rose-200;
@@ -91,13 +94,19 @@
         @apply px-4 py-3 text-xl italic text-rose-600;
     }
     .login-form-input {
-        @apply px-6;
+        @apply px-6 flex flex-col w-2xl ;
     }
     .login-form-input label {
         @apply indent-8 font-light text-imperial-400 text-lg underline;
     }
+    .login-form-input input {
+        @apply border-2 border-black rounded-3xl bg-white h-8 mt-2 w-2/3;
+    }
     .login-form-input + .login-form-input {
         @apply mt-5;
+    }
+    .login-form-button {
+        @apply my-8 ps-10 flex flex-row gap-x-5;
     }
     .menu-background {
         @apply bg-rose-800 aspect-square;
