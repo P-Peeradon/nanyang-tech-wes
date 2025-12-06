@@ -10,6 +10,7 @@ export interface StudentProfile{
     std_fname: string;
     std_lname: string;
     std_program: string;
+    std_yearOfStudy: number;
 };
 
 // Course DTO
