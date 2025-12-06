@@ -15,7 +15,7 @@ export const getUser = async (req: Request, res: Response, next: NextFunction ) 
             return next(new HttpError("Student ID format is invalid. It must match the pattern U/PxxxxxxxX (e.g., U1234567A).", 400));
         }
 
-        const query: string = "SELECT stu_id, stu_fname, stu_lname, stu_program FROM student WHERE stu_id = ?";
+        const query: string = "SELECT std_id, std_fname, std_lname, std_program FROM student WHERE std_id = ?";
         const [rows, _field] = await pool.execute<StudentProfile[]>(query, [userId]);
         if (rows.length === 0) {
             return next(new HttpError('Student not found', 404));

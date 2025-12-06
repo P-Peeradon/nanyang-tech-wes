@@ -95,7 +95,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
         const email: string = `${emailFirstNamePart}${emailLastNamePart}.${idDigits}@student.ntu.edu.sg`;
     
         // Check Existing user.
-        const [existingUserRows] = await pool.execute(
+        const [existingUserRows, _field] = await pool.execute(
             'SELECT std_id FROM student WHERE std_id = ? OR std_email = ?',
             [studentId, email]
         );
