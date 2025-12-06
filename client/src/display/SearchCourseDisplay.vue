@@ -63,6 +63,8 @@ const enrolInCourse = async (code: string) => {
     // Use API to create enrolment.
     try {
         const response = await axios.post(`${process.env.VITE_API_URL}/api/enrolment`, {
+            courseCode: code,
+        },{
             withCredentials: true, headers: {
                 authorization: `Bearer ${token}`
             }
