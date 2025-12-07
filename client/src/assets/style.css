@@ -100,7 +100,7 @@
         @apply indent-8 font-light text-imperial-400 text-lg underline;
     }
     .login-form-input input {
-        @apply border-2 border-black rounded-3xl bg-white h-8 mt-2 w-2/3;
+        @apply border-2 border-black rounded-3xl bg-white h-8 mt-2 w-2/5 indent-8;
     }
     .login-form-input + .login-form-input {
         @apply mt-5;
@@ -131,8 +131,5 @@
     }
     .course-input input {
         @apply border-2 border-gold-500 rounded-lg shadow-2xl shadow-imperial-900;
-    }
-    form.login-form {
-        @apply w-3xl h-auto ;
     }
 }
