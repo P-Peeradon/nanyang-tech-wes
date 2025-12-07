@@ -23,7 +23,7 @@
         >
             <Column field="code" header="Course Code"></Column>
             <Column field="title" header="Course Title"></Column>
-            <Column field="au" header="Academic Unit"></Column>
+            <Column field="au" header="AUs"></Column>
             <Column>
                 <template #body="{ data }">
                     <Button @click="enrolInCourse(data.code)">
@@ -50,10 +50,14 @@ const enrolmentState = enrolmentStore();
 
 const code = ref<string>('');
 const title = ref<string>('');
-const courses = computed(() => {
-    return courseState?.allCourses.filter((course: Course) => {
-        const matchesCode = course?.code.startsWith(code.value.toUpperCase());
-        const matchesTitle = course?.title.toLowerCase().includes(title.value.toLowerCase());
+const courses = computed<Course[]>(() => {
+    const allCourses = courseState?.allCourses ?? [];
+
+    return allCourses.filter((course: Course) => {
+        if (!course) return false;
+
+        const matchesCode: boolean = course.code.startsWith(code.value.toUpperCase());
+        const matchesTitle: boolean = course.title.toLowerCase().includes(title.value.toLowerCase());
 
         return matchesCode && matchesTitle;
     })
