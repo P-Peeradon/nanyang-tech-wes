@@ -106,7 +106,7 @@ export const createEnrolment = async (req: Request, res: Response, next: NextFun
 }
 
 // Create new enrolment for a student in NTU
-// DELETE /enrolment
+// DELETE /enrolment/:code
 // Protected
 export const deleteEnrolment = async (req: Request, res: Response, next: NextFunction) => {
     try {
