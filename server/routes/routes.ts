@@ -2,7 +2,7 @@ import express from 'express';
 // FIX: Change 'require' to 'import' statements
 import { fetchFeatures, loginUser, registerUser } from '../controller/SessionController.js'; 
 import { getUser } from '../controller/UserController.js'
-import { getCourse, getCourses, getStudentEnrolments } from '../controller/RegistrationController.js';
+import { getCourse, getCourses, getStudentEnrolments, createEnrolment } from '../controller/RegistrationController.js';
 import { authenticateToken } from '../middleware/middleware.js';
 
 const router = express.Router();
@@ -16,6 +16,7 @@ router.get('/user/:userId', authenticateToken, getUser);
 router.get('/courses', getCourses);
 router.get('/courses/:code', getCourse);
 
+router.post('/enrolment', authenticateToken, createEnrolment);
 router.get('/students/:id/enrolment', authenticateToken, getStudentEnrolments);
 
 export default router;

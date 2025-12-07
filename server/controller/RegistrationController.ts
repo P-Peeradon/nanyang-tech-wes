@@ -66,20 +66,36 @@ export const getStudentEnrolments = async (req: Request, res: Response, next: Ne
     }
 }
 
-/*
-export const createEnrolment = async (req: Request, res: Response, next: NextFunction) => {
-    const MAX_AU: number = 22;
-    
-    try {
-        // Check prerequisite
 
-        // Check academic unit exceed or not.
+export const createEnrolment = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { studentId, courseCode } = req.body;
+        const { user } = (req as any).user;
+
+        if (!user) {
+            return next(new HttpError('You are unauthorised to add enrolment data.', 401))
+        }
+
+        if (!studentId || !courseCode) {
+            return next(new HttpError('Please enter your student ID and course code', 400));
+        }
+
+        if (user?.id !== studentId) {
+            return next(new HttpError('You cannot enrol courses on behalf of other student'));
+        }
 
         // Add to enrolment table.
+        const query: string = 'INSERT INTO enrolment (std_id, cos_code, enrol_date, enrol_year, enrol_semester) VALUES (?, ?, ?, ?, ?)'
+        await pool.execute(query, [studentId, courseCode, new Date(), 2025, 1]);
 
         // But send 202 as the status is not approved.
+        return res.status(202).json({
+            studentId, 
+            courseCode, 
+            status: 'pending', 
+            remark: ''
+        });
     } catch (err: any) {
         return next(new HttpError(err));
     }
 }
-*/
