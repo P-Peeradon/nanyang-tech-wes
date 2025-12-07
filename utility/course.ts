@@ -40,4 +40,12 @@ export class Course {
             this.prerequisite.push(prereqCode);
         } 
     };
+
+    public toJSON(): object {
+        return {
+            code: this._code,
+            title: this._title,
+            au: this._au
+        }
+    }
 }

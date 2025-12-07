@@ -1,7 +1,7 @@
 export class Enrolment {
     private _studentId!: string;
     private _courseCode!: string;
-    // #status: any;
+    // _status: any;
     private _year: number;
     private _semester: number;
     private _timestamp: Date;
@@ -34,6 +34,15 @@ export class Enrolment {
 
     get remark(): string {
         return this._remark ?? '';
+    };
+
+    public toJSON(): object {
+        return {
+            studentId: this._studentId,
+            courseCode: this._courseCode,
+            year: this._year,
+            semester: this._semester,
+        }
     };
 
 }
