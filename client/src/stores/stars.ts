@@ -3,7 +3,6 @@ import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import { Course } from '../../../utility/course.ts'
 import { Enrolment } from '../../../utility/enrolment.ts'
-import type { CourseProfile, MyEnrolmentProfile } from "../assets/nanyang.ts";
 
 export const courseStore = defineStore('course', () => {
     const allCourses = ref<Course[]>([]); // Collect all courses taught at NTU.
@@ -17,7 +16,7 @@ export const courseStore = defineStore('course', () => {
                 throw new Error("Invalid or empty data received from the API.");
             }
 
-            allCourses.value = response.data.map((course: CourseProfile) =>
+            allCourses.value = response.data.map(course =>
                 new Course(course.cos_code, course.cos_title, course.cos_au)
             );
 
@@ -59,11 +58,13 @@ export const enrolmentStore = defineStore('enrolment', () => {
                 }
             });
 
-            if (!response?.data) {
+            if (!response?.data || !Array.isArray(response.data)) {
                 throw new Error("Data does not exist.");
             }
 
-            myEnrolment.value = response.data?.map((enrol: MyEnrolmentProfile) => new Enrolment(NanyangID ?? '', enrol.cos_code, enrol.enrol_year, enrol.enrol_semester));
+            myEnrolment.value = response.data.map(enrol => {
+                return new Enrolment(NanyangID ?? '', enrol.cos_code, enrol.enrol_year, enrol.enrol_semester)
+            });
 
         } catch (err) {
             console.error(err);
