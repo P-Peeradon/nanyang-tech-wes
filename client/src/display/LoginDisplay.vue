@@ -46,7 +46,7 @@ const message = ref<string>('');
 
 const handleLogin = async () => {
     try {
-        const response = await axios.post(`${process.env.VITE_API_URL}/api/login`, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, {
             username: username.value,
             password: password.value
         });
@@ -74,6 +74,7 @@ const handleLogin = async () => {
 
                 // Set reactive property in your Vue component:
                 message.value = errorPayload.message;
+                return;
             }
         }
 
