@@ -3,12 +3,13 @@
         <h2 class="my-enrol-header">My Enrolment</h2>
         <div class="my-10"></div>
         <DataTable
-            :value="displayEnrolment"
+            :value="displayedEnrolment"
             showGridlines
             table-style="min-width: 50px"
             :rows="5"
         >
             <Column field="courseCode" header="Course Code"></Column>
+            <Column field="title" header="Title"></Column>
             <Column field="remark" header="Remark"></Column>
             <Column>
                 <template #body="{ data }">
@@ -25,11 +26,41 @@
 import { enrolmentStore } from '../stores/stars';
 import axios from 'axios';
 import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import Button from 'primevue/button';
 import { computed, onMounted } from 'vue';
+import type { Enrolment } from '../../../utility/enrolment';
+import type { Course } from '../../../utility/course';
 
 const enrolmentState = enrolmentStore();
-const displayEnrolment = computed<object[]>(() => {
-    return enrolmentState.myEnrolment.map()
+const enrols = computed<object[]>(() => {
+    return enrolmentState.myEnrolment.map((enrolment: Enrolment) => {
+        return enrolment.toJSON();
+    });
+});
+const classes = computed<object[]>(() => {
+    return enrolmentState.coursesData.map((course: Course) => {
+        return course.toJSON();
+    });
+});
+
+const displayedEnrolment = computed<object[]>(() => {
+    if (enrols.value.length !== classes.value.length) {
+        // Handle error or return an empty array if lengths don't match
+        console.error("The 'enrols' and 'classes' arrays have different lengths.");
+        return [];
+    }
+
+    return enrols.value.map((enrolmentObject: object, index: number) => {
+        const classObject = classes.value[index];
+
+        // 1. Using the spread syntax (...) to merge properties
+        // This creates a new object containing all properties from both objects.
+        return {
+            ...enrolmentObject,
+            ...classObject
+        };
+    });
 });
 
 const dropCourse = async (code) => {
