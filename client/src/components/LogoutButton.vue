@@ -3,8 +3,16 @@
 </template>
 
 <script setup lang="ts">
-const handleLogout = () => {
+import { useRouter } from 'vue-router';
 
+
+const router = useRouter();
+const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('NTUeMail');
+    localStorage.removeItem('studentId');
+
+    router.push('/login');
 };
 </script>
 
