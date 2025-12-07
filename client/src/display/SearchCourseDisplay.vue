@@ -40,11 +40,13 @@ import { computed, ref } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
-import { courseStore } from '../stores/stars';
+import { courseStore, enrolmentStore } from '../stores/stars';
 import axios from 'axios';
 import { Course } from '../../../utility/course';
+import { Enrolment } from '../../../utility/enrolment';
 
-const token: string = localStorage.getItem('authToken') ?? '';
+const courseState = courseStore();
+const enrolmentState = enrolmentStore();
 
 const code = ref<string>('');
 const title = ref<string>('');
@@ -57,10 +59,9 @@ const courses = computed(() => {
     })
 });
 
-const courseState = courseStore();
-
 const enrolInCourse = async (code: string) => {
     const NTUid = localStorage.getItem('studentId');
+    const token = localStorage.getItem('authToken');
 
     // Use API to create enrolment.
     try {
@@ -72,6 +73,10 @@ const enrolInCourse = async (code: string) => {
                 authorization: `Bearer ${token}`
             }
         });
+
+        const { data } = response;
+
+        enrolmentState.myEnrolment.push(new Enrolment(data.studentId, data.courseCode, data.year, data.semester));
 
     } catch (err) {
         console.error(err);

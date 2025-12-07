@@ -14,7 +14,7 @@
             <Column>
                 <template #body="{ data }">
                     <Button @click="dropCourse(data.code)">
-                        Add Course
+                        Drop Course
                     </Button>
                 </template>
             </Column>
@@ -28,8 +28,8 @@ import axios from 'axios';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
-import { computed, onMounted } from 'vue';
-import type { Enrolment } from '../../../utility/enrolment';
+import { computed, onBeforeUnmount, onMounted } from 'vue';
+import { Enrolment } from '../../../utility/enrolment';
 import type { Course } from '../../../utility/course';
 
 const enrolmentState = enrolmentStore();
@@ -63,13 +63,32 @@ const displayedEnrolment = computed<object[]>(() => {
     });
 });
 
-const dropCourse = async (code) => {
-    await axios.delete();
-}
+const dropCourse = async (code: string) => {
+    try {
+        const token = localStorage.getItem('authToken');
+
+        await axios.delete(`${import.meta.env}/api/enrolment/${code}`, {
+            withCredentials: true, headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+
+        // Delete that enrolment entry
+        enrolmentState.myEnrolment.filter((enrolment: Enrolment) => {
+            return enrolment.courseCode !== code;
+        })
+    } catch (err) {
+        console.error(err);
+    }
+};
 
 onMounted(async () => {
     await enrolmentState.getMyEnrolment();
-})
+});
+
+onBeforeUnmount(() => {
+    enrolmentState.myEnrolment = [];
+});
 </script>
 
 <style>

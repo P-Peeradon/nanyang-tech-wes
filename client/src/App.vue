@@ -5,7 +5,7 @@ import { routeStore } from './stores/direction';
 
 import DefaultLayout from './layouts/DefaultLayout.vue';
 import BlankLayout from './layouts/BlankLayout.vue';
-import { courseStore } from './stores/stars';
+import { courseStore, enrolmentStore } from './stores/stars';
 
 // A map to link layout names (strings) to the actual component imports
 const layoutComponents: Record<string, Component> = {
@@ -16,6 +16,7 @@ const layoutComponents: Record<string, Component> = {
 const route: RouteLocationNormalizedLoaded = useRoute();
 const routeState = routeStore();
 const courseState = courseStore();
+const enrolmentState = enrolmentStore()
 
 const currentLayout: ComputedRef<Component> = computed(() => {
     // Get the layout name from the route meta, or default to 'DefaultLayout'
