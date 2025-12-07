@@ -4,7 +4,6 @@ export class Enrolment {
     // _status: any;
     private _year: number;
     private _semester: number;
-    private _timestamp: Date;
     private _remark?: string | undefined;
 
     constructor(studentId: string, courseCode: string, year?: number, semester?: number, remark?: string) {
@@ -12,7 +11,6 @@ export class Enrolment {
         this._courseCode = courseCode;
         this._year = year ?? 1965;
         this._semester = semester ?? 1;
-        this._timestamp = new Date();
         this._remark = remark;
     };
 
