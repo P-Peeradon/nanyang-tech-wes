@@ -1,17 +1,19 @@
 <template>
-    <WebHeader />
-    <div class="flex flex-row justify-between">
-        <aside class="w-60">
-            <VerticalNav />
-        </aside>
-        <main class="view">
-            <TitleSection :title="props.title" />
-            <br />
-            <slot />
-        </main>
+    <div class="bg-linear-to-tr from-imperial-300 via-blue-300 to-violet-400 w-screen">
+        <WebHeader />
+        <div class="flex flex-row justify-between">
+            <aside class="w-60">
+                <VerticalNav />
+            </aside>
+            <main class="view">
+                <TitleSection :title="props.title" />
+                <br />
+                <slot />
+            </main>
+        </div>
+        <div class="mb-3 lg:mb-6 xl:mb-10" />
+        <WebFooter />
     </div>
-    <div class="mb-3 lg:mb-6 xl:mb-10" />
-    <WebFooter />
 </template>
 
 <script setup lang="ts">
