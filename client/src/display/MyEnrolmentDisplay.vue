@@ -29,7 +29,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
 import { computed, onBeforeUnmount, onMounted } from 'vue';
-import { Enrolment } from '../../../utility/enrolment';
+import type { Enrolment } from '../../../utility/enrolment';
 import type { Course } from '../../../utility/course';
 
 const enrolmentState = enrolmentStore();
@@ -66,8 +66,9 @@ const displayedEnrolment = computed<object[]>(() => {
 const dropCourse = async (code: string) => {
     try {
         const token = localStorage.getItem('authToken');
+        const id = localStorage.getItem('studentId');
 
-        await axios.delete(`${import.meta.env}/api/enrolment/${code}`, {
+        await axios.delete(`${process.env.VITE_API_URL}/api/enrolment/${id}/${code}`, {
             withCredentials: true, headers: {
                 authorization: `Bearer ${token}`
             }
