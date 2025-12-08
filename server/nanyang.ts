@@ -35,3 +35,16 @@ export interface MyEnrolmentProfile extends RowDataPacket {
     enrol_year: number;
     enrol_remark?: string | null;
 }
+
+/* 
+{ 
+    id: student?.std_id, 
+    role: 'student', 
+    email: student?.std_email 
+}
+*/
+export interface JWTPayload {
+    id: string;
+    email: string;
+    role: 'student' | 'admin' | 'staff'
+}

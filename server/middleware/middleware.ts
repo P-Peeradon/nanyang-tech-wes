@@ -2,6 +2,15 @@ import type { Request, Response, NextFunction } from "express"
 import { HttpError } from "../model/error.js";
 import jwt from 'jsonwebtoken';
 import "dotenv/config.js";
+import type { JWTPayload } from "../nanyang.js";
+
+declare global {
+    namespace Express {
+        interface Request {
+            user?: JWTPayload
+        }
+    }
+}
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader: string | undefined = (req.headers.authorization);
@@ -23,7 +32,7 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
             return next(new HttpError('Forbidden: Token invalid or expired.', 403));
         }
 
-        (req as any).user = info;
+        req.user = (info as JWTPayload);
     });
     
     console.log(req);
