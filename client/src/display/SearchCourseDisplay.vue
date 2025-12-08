@@ -69,7 +69,7 @@ const enrolInCourse = async (code: string) => {
 
     // Use API to create enrolment.
     try {
-        const response = await axios.post(`${process.env.VITE_API_URL}/api/enrolment`, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/enrolment`, {
             studentId: NTUid,
             courseCode: code,
         },{

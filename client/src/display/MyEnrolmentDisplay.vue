@@ -68,7 +68,7 @@ const dropCourse = async (code: string) => {
         const token = localStorage.getItem('authToken');
         const id = localStorage.getItem('studentId');
 
-        await axios.delete(`${process.env.VITE_API_URL}/api/enrolment/${id}/${code}`, {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/enrolment/${id}/${code}`, {
             withCredentials: true, headers: {
                 authorization: `Bearer ${token}`
             }
