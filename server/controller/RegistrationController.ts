@@ -88,6 +88,13 @@ export const createEnrolment = async (req: Request, res: Response, next: NextFun
         }
         */
 
+        // Check for conflict 
+        const conditionQuery: string = 'SELECT * FROM enrolment WHERE std_id = ? AND cos_code = ?';
+        const [rows, _field] = await pool.execute(conditionQuery, [studentId, courseCode]);
+        if (Array.isArray(rows) && rows?.length > 0) {
+            return next(new HttpError('Enrolment already exists', 409));
+        }
+
         // Add to enrolment table.
         const query: string = 'INSERT INTO enrolment (std_id, cos_code, enrol_year, enrol_semester) VALUES (?, ?, ?, ?)'
         await pool.execute(query, [studentId, courseCode, 2025, 1]);
@@ -106,34 +113,35 @@ export const createEnrolment = async (req: Request, res: Response, next: NextFun
 }
 
 // Create new enrolment for a student in NTU
-// DELETE /enrolment/:code
+// DELETE /enrolment/:id/:code
 // Protected
 export const deleteEnrolment = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { studentId, courseCode } = req.body;
+        const { id, code } = req.params;
+
         const user: object = (req as any).user ?? {};
 
         if (!user) {
             return next(new HttpError('You are unauthorised to delete enrolment data.', 401))
         }
 
-        if (!studentId || !courseCode) {
+        if (!id || !code) {
             return next(new HttpError('Please enter your student ID and course code', 400));
         }
 
         /*
         if (user.id !== studentId) {
-            return next(new HttpError('You cannot enrol courses on behalf of other student', 403));
+            return next(new HttpError('You cannot drop courses on behalf of other student', 403));
         }
         */
 
         // Add to enrolment table.
         const query: string = 'DELETE FROM enrolment WHERE std_id = ? AND cos_code = ?'
-        await pool.execute(query, [studentId, courseCode]);
+        await pool.execute(query, [id, code]);
         await pool.commit();
 
         // But send 204 as we do not need any data, but if successful, that data must be wiped out from the state.
-        return res.status(204)
+        return res.status(204);
     } catch (err: any) {
         return next(new HttpError(err));
     }

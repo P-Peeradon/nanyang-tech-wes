@@ -3,23 +3,25 @@ import { HttpError } from "../model/error.js";
 import pool from "../db/database.js";
 import type { StudentProfile } from "../nanyang.js";
 
-// Get a specific user data
-// POST /user/:userId
+// Get a specific student data
+// POST /students/:id
 // Protected
-export const getUser = async (req: Request, res: Response, next: NextFunction ) => {
+export const getStudent = async (req: Request, res: Response, next: NextFunction ) => {
     try {
-        const { userId } = req.params;
+        const { id } = req.params;
         const nanyangStudentId: RegExp = /^[UP][0-9]{7}[A-Z]$/;
 
-        if (!nanyangStudentId.test(userId!)) {
+        if (!nanyangStudentId.test(id!)) {
             return next(new HttpError("Student ID format is invalid. It must match the pattern U/PxxxxxxxX (e.g., U1234567A).", 400));
         }
 
         const query: string = "SELECT std_id, std_fname, std_lname, std_program, std_yearOfStudy FROM student WHERE std_id = ?";
-        const [rows, _field] = await pool.execute<StudentProfile[]>(query, [userId]);
+        const [rows, _field] = await pool.execute<StudentProfile[]>(query, [id]);
+        
         if (rows.length === 0) {
             return next(new HttpError('Student not found', 404));
         }
+
         const studentData = rows[0];
         res.status(200).json(studentData);
     } catch (err: any) {
