@@ -26,6 +26,7 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
         (req as any).user = info;
     });
     
+    console.log(req);
     next();
 }
 
