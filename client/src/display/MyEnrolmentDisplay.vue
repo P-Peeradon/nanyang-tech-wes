@@ -13,7 +13,7 @@
             <Column field="remark" header="Remark"></Column>
             <Column>
                 <template #body="{ data }">
-                    <Button @click="dropCourse(data.code)">
+                    <Button @click="dropCourse(data.courseCode)">
                         Drop Course
                     </Button>
                 </template>
@@ -77,7 +77,8 @@ const dropCourse = async (code: string) => {
         // Delete that enrolment entry
         enrolmentState.myEnrolment.filter((enrolment: Enrolment) => {
             return enrolment.courseCode !== code;
-        })
+        });
+
     } catch (err) {
         console.error(err);
     }
