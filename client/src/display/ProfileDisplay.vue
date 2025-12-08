@@ -5,7 +5,11 @@
             <EventCalendar />
         </div>
         <br />
-        <AcademicProfileCard />
+        <div class="grid grid-cols-3 gap-6">
+            <AcademicProfileCard :header="'Norn'"/>
+            <AcademicProfileCard :header="'Norn'"/>
+            <AcademicProfileCard :header="'Norn'"/>
+        </div>
     </div>
 </template>
 

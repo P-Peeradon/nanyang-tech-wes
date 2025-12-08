@@ -66,6 +66,9 @@
     h2 {
         @apply font-semibold text-2xl drop-shadow-xs;
     }
+    h3 {
+        @apply text-lg lg:text-2xl xl:text-4xl font-semibold;
+    }
 }
 
 @layer components {
@@ -112,7 +115,7 @@
         @apply bg-rose-800 aspect-square;
     }
     h3.menu-header {
-        @apply text-lg lg:text-2xl xl:text-4xl font-semibold text-gold-300 ml-7 lg:ml-12 xl:ml-17 my-3 lg:my-9 xl:my-15;
+        @apply text-gold-300 ml-7 lg:ml-12 xl:ml-17 my-3 lg:my-9 xl:my-15;
     }
     a.menu-link {
         @apply text-sm lg:text-lg xl:text-3xl text-sky-200 ml-5 lg:ml-10 xl:ml-15 underline;
@@ -131,5 +134,11 @@
     }
     .course-input input {
         @apply border-2 border-gold-500 rounded-lg shadow-2xl shadow-imperial-900;
+    }
+    .academic-card {
+        @apply w-full aspect-square border-2 border-black rounded-2xl bg-imperial-600;
+    }
+    h3.academic-card-header {
+        @apply text-gold-300 ml-7 lg:ml-12 xl:ml-17 my-3 lg:my-9 xl:my-15;
     }
 }
