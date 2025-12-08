@@ -98,7 +98,6 @@ export const createEnrolment = async (req: Request, res: Response, next: NextFun
         // Add to enrolment table.
         const query: string = 'INSERT INTO enrolment (std_id, cos_code, enrol_year, enrol_semester) VALUES (?, ?, ?, ?)'
         await pool.execute(query, [studentId, courseCode, 2025, 1]);
-        await pool.commit();
 
         // But send 202 as the status is not approved.
         return res.status(202).json({
@@ -135,10 +134,16 @@ export const deleteEnrolment = async (req: Request, res: Response, next: NextFun
         }
         */
 
+        // Check for conflict 
+        const conditionQuery: string = 'SELECT * FROM enrolment WHERE std_id = ? AND cos_code = ?';
+        const [rows, _field] = await pool.execute(conditionQuery, [id, code]);
+        if (Array.isArray(rows) && rows?.length === 0) {
+            return next(new HttpError('Enrolment does not exist', 409));
+        }
+
         // Add to enrolment table.
         const query: string = 'DELETE FROM enrolment WHERE std_id = ? AND cos_code = ?'
         await pool.execute(query, [id, code]);
-        await pool.commit();
 
         // But send 204 as we do not need any data, but if successful, that data must be wiped out from the state.
         return res.status(204);
