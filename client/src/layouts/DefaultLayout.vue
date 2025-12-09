@@ -1,6 +1,7 @@
 <template>
     <div class="bg-linear-to-tr from-imperial-300 via-blue-300 to-violet-400 w-screen">
         <WebHeader />
+        <TimeDisplay />
         <div class="flex flex-row justify-between">
             <aside class="w-60">
                 <VerticalNav />
@@ -21,6 +22,7 @@ import TitleSection from '../components/TitleSection.vue';
 import VerticalNav from '../components/VerticalNav.vue';
 import WebHeader from '../components/WebHeader.vue';
 import WebFooter from '../components/WebFooter.vue';
+import TimeDisplay from '../components/TimeDisplay.vue';
 
 interface layoutProps {
     title: string;

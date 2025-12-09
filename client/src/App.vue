@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
-import { onMounted, computed, type Component, type ComputedRef } from 'vue';
-import { routeStore } from './stores/direction';
+import { onMounted, computed, type Component, type ComputedRef, onUnmounted } from 'vue';
+import { routeStore, timeStore } from './stores/direction';
 
 import DefaultLayout from './layouts/DefaultLayout.vue';
 import BlankLayout from './layouts/BlankLayout.vue';
@@ -16,6 +16,7 @@ const layoutComponents: Record<string, Component> = {
 const route: RouteLocationNormalizedLoaded = useRoute();
 const routeState = routeStore();
 const courseState = courseStore();
+const timeState = timeStore();
 
 const currentLayout: ComputedRef<Component> = computed(() => {
     // Get the layout name from the route meta, or default to 'DefaultLayout'
@@ -31,7 +32,19 @@ const currentLayoutProps = computed(() => {
 onMounted(() => {
     routeState.getAllRoutes();
     courseState.getAllCourses();
+
+    timeState.intervalId = window.setInterval(() => {
+        timeState.currentTime = new Date();
+    }, 60000);
+
+    timeState.currentTime = new Date();
 });
+
+onUnmounted(() => {
+    if (timeState.intervalId !== undefined) {
+        window.clearInterval(timeState.intervalId);
+    }
+})
 </script>
 
 <template>
