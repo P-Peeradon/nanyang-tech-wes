@@ -13,9 +13,9 @@
             <Column field="remark" header="Remark"></Column>
             <Column>
                 <template #body="{ data }">
-                    <Button @click="dropCourse(data.courseCode)">
-                        Drop Course
-                    </Button>
+                    <button class="danger-button" @click="dropCourse(data.courseCode)">
+                        Drop
+                    </button>
                 </template>
             </Column>
         </DataTable>
@@ -27,7 +27,6 @@ import { enrolmentStore } from '../stores/stars';
 import axios from 'axios';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import Button from 'primevue/button';
 import { computed, onBeforeUnmount, onMounted } from 'vue';
 import type { Enrolment } from '../../../utility/enrolment';
 import type { Course } from '../../../utility/course';

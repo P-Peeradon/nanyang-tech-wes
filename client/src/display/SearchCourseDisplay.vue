@@ -16,7 +16,7 @@
         <DataTable
             :value="courses"
             showGridlines
-            table-style="min-width: 50px"
+            table-style="min-width: 40px"
             paginator
             :rows="10"
             :rowsPerPageOptions="[10, 20, 40, 60]"
@@ -26,9 +26,9 @@
             <Column field="au" header="AUs"></Column>
             <Column>
                 <template #body="{ data }">
-                    <Button @click="enrolInCourse(data.code)">
-                        Add Course
-                    </Button>
+                    <button class="primary-button" @click="enrolInCourse(data.code)">
+                        Enrol
+                    </button>
                 </template>
             </Column>
         </DataTable>
@@ -39,7 +39,6 @@
 import { computed, ref } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import Button from 'primevue/button';
 import { courseStore, enrolmentStore } from '../stores/stars';
 import axios from 'axios';
 import { Course } from '../../../utility/course';
