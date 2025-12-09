@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import ProfileView from '../views/ProfileView.vue';
 import LoginView from '../views/LoginView.vue';
 import AddDropView from '../views/AddDropView.vue';
+import TimetableView from '../views/TimetableView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,18 @@ const router = createRouter({
                 },
                 requiresAuth: true
             }
+        },
+        {
+            path: '/planner/timetable',
+            name: 'timetable',
+            component: TimetableView,
+            meta: {
+                layout: 'DefaultLayout',
+                props: {
+                    title: 'Timetable'
+                },
+                requiresAuth: true
+            },
         }
     ],
 });
