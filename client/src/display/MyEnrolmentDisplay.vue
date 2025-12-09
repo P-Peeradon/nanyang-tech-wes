@@ -28,17 +28,17 @@ import axios from 'axios';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { computed, onBeforeUnmount, onMounted } from 'vue';
-import type { Enrolment } from '../../../utility/enrolment';
-import type { Course } from '../../../utility/course';
+import type { IEnrolment } from '../../../utility/enrolment';
+import type { ICourse } from '../../../utility/course';
 
 const enrolmentState = enrolmentStore();
 const enrols = computed<object[]>(() => {
-    return enrolmentState.myEnrolment.map((enrolment: Enrolment) => {
+    return enrolmentState.myEnrolment.map((enrolment: IEnrolment) => {
         return enrolment.toJSON();
     });
 });
 const classes = computed<object[]>(() => {
-    return enrolmentState.coursesData.map((course: Course) => {
+    return enrolmentState.coursesData.map((course: ICourse) => {
         return course.toJSON();
     });
 });
@@ -74,7 +74,7 @@ const dropCourse = async (code: string) => {
         });
 
         // Delete that enrolment entry
-        enrolmentState.myEnrolment.filter((enrolment: Enrolment) => {
+        enrolmentState.myEnrolment.filter((enrolment: IEnrolment) => {
             return enrolment.courseCode !== code;
         });
 

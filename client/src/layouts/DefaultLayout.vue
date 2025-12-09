@@ -8,10 +8,10 @@
             <main class="view">
                 <TitleSection :title="props.title" />
                 <br />
-                <slot />
+                <slot></slot>
             </main>
         </div>
-        <div class="mb-3 lg:mb-6 xl:mb-10" />
+        <div class="mb-3 lg:mb-6 xl:mb-10"></div>
         <WebFooter />
     </div>
 </template>

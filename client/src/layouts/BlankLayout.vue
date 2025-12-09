@@ -1,9 +1,12 @@
 <template>
-    <WebHeader />
-    <main class="bg-imperial-800">
-        <slot />
-    </main>
-    <WebFooter />
+    <div>
+        <WebHeader />
+        <main class="bg-imperial-800">
+            <slot></slot>
+        </main>
+        <WebFooter />
+    </div>
+
 </template>
 
 <script setup lang="ts">

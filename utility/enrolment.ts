@@ -1,10 +1,10 @@
-export class Enrolment {
+export class Enrolment implements IEnrolment {
     private _studentId!: string;
     private _courseCode!: string;
     // _status: any;
     private _year: number;
     private _semester: number;
-    private _remark?: string | undefined;
+    private _remark?: string;
 
     constructor(studentId: string, courseCode: string, year?: number, semester?: number, remark?: string) {
         this._studentId = studentId;
@@ -43,4 +43,14 @@ export class Enrolment {
         }
     };
 
+}
+
+export interface IEnrolment {
+    readonly studentId: string;
+    readonly courseCode: string;
+    // status: any;
+    readonly year: number;
+    readonly semester: number;
+    readonly remark?: string;
+    toJSON(): object;
 }

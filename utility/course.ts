@@ -1,4 +1,4 @@
-export class Course {
+export class Course implements ICourse {
     private _code!: string;
     private _title: string;
     private _au: number;
@@ -39,7 +39,7 @@ export class Course {
         this._prerequisite = newPrerequisite;
     };
 
-    addNewPrereq(prereqCode: string) {
+    public addNewPrereq(prereqCode: string) {
         if (!this.prerequisite.includes(prereqCode)) {
             this.prerequisite.push(prereqCode);
         } 
@@ -52,4 +52,13 @@ export class Course {
             au: this._au
         }
     }
+}
+
+export interface ICourse {
+    readonly code: string;
+    title: string;
+    au: number;
+    prerequisite: Array<string>;
+    addNewPrereq(prereqCode: string): void; 
+    toJSON(): object;
 }

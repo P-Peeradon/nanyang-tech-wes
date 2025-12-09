@@ -1,4 +1,4 @@
-export class Student {
+export class Student implements IStudent{
     private _studentId!: string;
     private _firstName: string;
     private _lastName: string;
@@ -49,11 +49,15 @@ export class Student {
         this._lastName = newLastName;
     };
 
-    public set studentId(newStudentId: string)  {
-        this._studentId = newStudentId;
-    };
-
     public set program(newProgram: string) {
         this._program = newProgram;
     };
 };
+
+export interface IStudent {
+    readonly studentId: string;
+    firstName: string;
+    lastName: string;
+    program: string;
+    readonly yearOfStudy: number;
+}

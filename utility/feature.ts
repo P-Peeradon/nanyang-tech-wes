@@ -1,4 +1,4 @@
-export class Feature {
+export class Feature implements IFeature {
     private _name: string;
     private _view: string;
 
@@ -14,4 +14,9 @@ export class Feature {
     public get view() {
         return this._view;
     }
+}
+
+export interface IFeature {
+    readonly name: string;
+    readonly view: string;
 }
