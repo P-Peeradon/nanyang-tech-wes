@@ -1,6 +1,6 @@
 <template>
     <div class="w-auto h-6">
-        <p class="text-end text-lg text-imperial-400 underline underline-offset-2">{{ timeState.currentTime }}</p>
+        <p class="text-end text-lg pe-5 font-bold text-fuchsia-900 underline underline-offset-2">{{ timeState.timeZoneTime }}</p>
     </div>
 </template>
 

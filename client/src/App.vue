@@ -44,6 +44,10 @@ onUnmounted(() => {
     if (timeState.intervalId !== undefined) {
         window.clearInterval(timeState.intervalId);
     }
+
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('NTUeMail');
+    localStorage.removeItem('studentId');
 })
 </script>
 
