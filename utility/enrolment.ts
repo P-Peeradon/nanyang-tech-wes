@@ -14,23 +14,23 @@ export class Enrolment {
         this._remark = remark;
     };
 
-    get studentId(): string {
+    public get studentId(): string {
         return this._studentId;
     };
 
-    get courseCode(): string {
+    public get courseCode(): string {
         return this._courseCode;
     };
 
-    get year(): number {
+    public get year(): number {
         return this._year;
     };
 
-    get semester(): number {
+    public get semester(): number {
         return this._semester;
     };
 
-    get remark(): string {
+    public get remark(): string {
         return this._remark ?? '';
     };
 

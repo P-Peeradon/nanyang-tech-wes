@@ -13,47 +13,47 @@ export class Student {
         this._yearOfStudy = yearOfStudy ?? 1;
     };
 
-    get firstName(): string {
+    public get firstName(): string {
         return this._firstName;
     };
 
-    get lastName(): string {
+    public get lastName(): string {
         return this._lastName;
     };
 
-    get studentId(): string {
+    public get studentId(): string {
         return this._studentId;
     };
 
-    get program(): string{
+    public get program(): string{
         return this._program;
     };
 
-    get fullName(): string {
+    public get fullName(): string {
         return `${this._firstName} ${this._lastName}`; // Computed
     };
 
-    get yearOfStudy(): number {
+    public get yearOfStudy(): number {
         return this._yearOfStudy;
     };
 
-    get email(): string {
+    public get email(): string {
         return `${this._firstName[0]?.toLowerCase()}${this._lastName.substring(0,3)?.toLowerCase()}.${this._studentId?.substring(1,8)}@student.ntu.edu.sg`; // Computed
     };
 
-    set firstName(newFirstName: string) {
+    public set firstName(newFirstName: string) {
         this._firstName = newFirstName;
     };
 
-    set lastName(newLastName: string) {
+    public set lastName(newLastName: string) {
         this._lastName = newLastName;
     };
 
-    set studentId(newStudentId: string)  {
+    public set studentId(newStudentId: string)  {
         this._studentId = newStudentId;
     };
 
-    set program(newProgram: string) {
+    public set program(newProgram: string) {
         this._program = newProgram;
     };
 };

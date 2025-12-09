@@ -11,27 +11,31 @@ export class Course {
         this._prerequisite = prerequisite ?? [];
     };
 
-    get code(): string {
+    public get code(): string {
         return this._code;
     }
 
-    get title(): string  {
+    public get title(): string  {
         return this._title;
     };
 
-    get au(): number {
+    public get au(): number {
         return this._au;
     };
 
-    get prerequisite() {
+    public get prerequisite() {
         return this._prerequisite;
     };
 
-    set title(newTitle: string) {
+    public set title(newTitle: string) {
         this._title = newTitle;
-    }
+    };
 
-    set prerequisite(newPrerequisite: Array<string>) {
+    public set au(newAU: number) {
+        this._au = newAU;
+    };
+
+    public set prerequisite(newPrerequisite: Array<string>) {
         this._prerequisite = newPrerequisite;
     };
 

@@ -7,11 +7,11 @@ export class Feature {
         this._view = view ?? 'home';
     }
 
-    get name() {
+    public get name() {
         return this._name;
     }
 
-    get view() {
+    public get view() {
         return this._view;
     }
 }
