@@ -1,5 +1,5 @@
 <template>
-    <div class="w-auto h-30">
+    <div class="w-auto h-6">
         <p class="text-end text-lg text-imperial-400 underline underline-offset-2">{{ timeState.currentTime }}</p>
     </div>
 </template>
