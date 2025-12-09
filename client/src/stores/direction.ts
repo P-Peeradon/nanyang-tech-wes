@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { Feature, type IFeature } from '../../../utility/feature';
-import type { FeatureRoute } from '../../../server/nanyang'
+import type { FeatureRoute } from '../../../server/nanyang';
 import axios from 'axios';
 
 export const routeStore = defineStore('route', () => {
-    const routes = ref<Array<Feature>>([]);
+    const routes = ref<Array<IFeature>>([]);
 
     async function getAllRoutes() {
         try {

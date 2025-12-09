@@ -41,7 +41,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { courseStore, enrolmentStore } from '../stores/stars';
 import axios from 'axios';
-import { Course } from '../../../utility/course';
+import { type ICourse } from '../../../utility/course';
 import { Enrolment } from '../../../utility/enrolment';
 
 const courseState = courseStore();
@@ -49,10 +49,10 @@ const enrolmentState = enrolmentStore();
 
 const code = ref<string>('');
 const title = ref<string>('');
-const courses = computed<Course[]>(() => {
+const courses = computed<ICourse[]>(() => {
     const allCourses = courseState?.allCourses ?? [];
 
-    return allCourses.filter((course: Course) => {
+    return allCourses.filter((course: ICourse) => {
         if (!course) return false;
 
         const matchesCode: boolean = course.code.startsWith(code.value.toUpperCase());
