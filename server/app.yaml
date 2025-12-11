@@ -1,7 +1,8 @@
 runtime: nodejs20
-instance_class: F1
+instance_class: F4
 automatic_scaling:
-    max_instances: 1 # Keeps costs low for testing
+    min_instances: 1
+    max_instances: 2 # Keeps costs low for testing
 env_variables:
     NODE_ENV: 'production'
     # Add your DB connection strings here, NOT in .env files
@@ -10,4 +11,4 @@ env_variables:
     MYSQL_USER: 'nanyang60'
     MYSQL_PASSWORD: 'NTUSingapore+60'
     MYSQL_DATABASE: 'nanyang_stars'
-    API_PORT: 3000
+    API_PORT: 8080

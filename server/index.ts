@@ -4,7 +4,7 @@ import { errorHandler } from './middleware/middleware.js';
 import router from './routes/routes.js';
 
 const app: Express = express();
-const PORT: number = parseInt(process.env.PORT ?? '') || 8080;
+const PORT: number = process.env.API_PORT ? parseInt(process.env.API_PORT) : 8080;
 
 app.use(cors(
     { 
