@@ -7,8 +7,8 @@ env_variables:
     NODE_ENV: 'production'
     # Add your DB connection strings here, NOT in .env files
     JWT_SECRET_KEY: 'kfmf5323fvr5d_mlm5105ds'
-    MYSQL_HOST: '34.87.17.23'
     MYSQL_USER: 'nanyang60'
     MYSQL_PASSWORD: 'NTUSingapore+60'
     MYSQL_DATABASE: 'nanyang_stars'
+    MYSQL_SOCKET: 'mock-ntu-wes:asia-southeast1:root'
     API_PORT: 8080

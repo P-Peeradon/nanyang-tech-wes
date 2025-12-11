@@ -7,6 +7,7 @@ const access: PoolOptions = {
     user: process.env.MYSQL_USER ?? '',
     password: process.env.MYSQL_PASSWORD ?? '',
     database: process.env.MYSQL_DATABASE ?? '',
+    socketPath: process.env.MYSQL_SOCKET ?? ''
 };
 
 // 2. Create the Connection Pool
