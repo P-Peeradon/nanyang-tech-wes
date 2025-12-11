@@ -8,6 +8,6 @@ env_variables:
     JWT_SECRET_KEY: 'kfmf5323fvr5d_mlm5105ds'
     MYSQL_HOST: '34.87.17.23'
     MYSQL_USER: 'nanyang60'
-    MYSQL_PASSWORD: 'ntusg60'
+    MYSQL_PASSWORD: 'NTUSingapore+60'
     MYSQL_DATABASE: 'nanyang_stars'
     API_PORT: 3000
