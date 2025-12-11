@@ -41,8 +41,8 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { courseStore, enrolmentStore } from '../stores/stars';
 import axios from 'axios';
-import { type ICourse } from '../../../utility/course';
-import { Enrolment } from '../../../utility/enrolment';
+import { type ICourse } from '../../../server/utility/course';
+import { Enrolment } from '../../../server/utility/enrolment';
 
 const courseState = courseStore();
 const enrolmentState = enrolmentStore();

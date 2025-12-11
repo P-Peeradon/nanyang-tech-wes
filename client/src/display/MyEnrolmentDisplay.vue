@@ -28,8 +28,8 @@ import axios from 'axios';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { computed, onBeforeUnmount, onMounted } from 'vue';
-import type { IEnrolment } from '../../../utility/enrolment';
-import type { ICourse } from '../../../utility/course';
+import type { IEnrolment } from '../../../server/utility/enrolment';
+import type { ICourse } from '../../../server/utility/course';
 
 const enrolmentState = enrolmentStore();
 const enrols = computed<object[]>(() => {
