@@ -9,7 +9,7 @@ const PORT: number = 3000;
 app.use(cors(
     { 
         credentials: true, 
-        origin: ['http://localhost:5173'], 
+        origin: ['http://localhost:5173', 'https://mock-ntu-wes-sg.web.app'], 
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
     }
 ));
