@@ -1,6 +1,6 @@
 import express, { type Express } from 'express';
 import cors from 'cors';
-import { errorHandler, corsHeaderAttach } from './middleware/middleware.js';
+import { errorHandler } from './middleware/middleware.js';
 import router from './routes/routes.js';
 
 const app: Express = express();
@@ -13,7 +13,6 @@ app.use(cors(
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
     }
 ));
-app.use(corsHeaderAttach);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
