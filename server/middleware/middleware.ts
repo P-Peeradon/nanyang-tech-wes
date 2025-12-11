@@ -49,3 +49,11 @@ export const errorHandler = (error: any, req: Request, res: Response, next: Next
 
     res.status(statusCode).json({ name: error.name || "ServerError", message: message });
 }
+
+export const corsHeaderAttach = (req: Request, res: Response, next: NextFunction) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://mock-ntu-wes-sg.web.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    next()
+}
