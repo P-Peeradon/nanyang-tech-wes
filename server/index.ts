@@ -9,8 +9,9 @@ const PORT: number = 3000;
 app.use(cors(
     { 
         credentials: true, 
-        origin: ['http://localhost:5173', 'https://mock-ntu-wes-sg.web.app/'], 
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+        origin: ['https://mock-ntu-wes-sg.web.app', 'http://localhost:5173'], 
+        allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+        methods: 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS'
     }
 ));
 app.use(express.urlencoded({ extended: true }));
