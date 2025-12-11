@@ -4,7 +4,7 @@ export class Enrolment implements IEnrolment {
     // _status: any;
     private _year: number;
     private _semester: number;
-    private _remark?: string;
+    private _remark?: string | undefined;
 
     constructor(studentId: string, courseCode: string, year?: number, semester?: number, remark?: string) {
         this._studentId = studentId;
