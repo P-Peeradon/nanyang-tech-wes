@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { Student } from '../../../utility/student.ts'
+import { Student } from '../../../server/utility/student.ts'
 import axios from "axios";
 
 export const studentStore = defineStore('student', () => {

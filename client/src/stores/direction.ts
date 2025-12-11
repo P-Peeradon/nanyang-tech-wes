@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { Feature, type IFeature } from '../../../utility/feature';
+import { Feature, type IFeature } from '../../../server/utility/feature.ts';
 import type { FeatureRoute } from '../../../server/nanyang';
 import axios from 'axios';
 

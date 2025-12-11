@@ -1,0 +1,13 @@
+runtime: nodejs20
+instance_class: F1
+automatic_scaling:
+    max_instances: 1 # Keeps costs low for testing
+env_variables:
+    NODE_ENV: 'production'
+    # Add your DB connection strings here, NOT in .env files
+    JWT_SECRET_KEY: 'kfmf5323fvr5d_mlm5105ds'
+    MYSQL_HOST: 'localhost'
+    MYSQL_USER: 'nanyang60'
+    MYSQL_PASSWORD: 'ntusg60'
+    MYSQL_DATABASE: 'nanyang_stars'
+    API_PORT: 3000

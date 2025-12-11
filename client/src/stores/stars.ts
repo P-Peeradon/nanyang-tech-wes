@@ -1,8 +1,8 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { Course, type ICourse } from '../../../utility/course.ts'
-import { Enrolment } from '../../../utility/enrolment.ts'
+import { Course, type ICourse } from '../../../server/utility/course.ts'
+import { Enrolment } from '../../../server/utility/enrolment.ts'
 
 export const courseStore = defineStore('course', () => {
     const allCourses = ref<Course[]>([]); // Collect all courses taught at NTU.
