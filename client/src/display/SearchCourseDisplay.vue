@@ -26,7 +26,7 @@
             <Column field="au" header="AUs"></Column>
             <Column>
                 <template #body="{ data }">
-                    <button class="primary-button" @click="enrolInCourse(data.code)">
+                    <button class="primary-button" @click.prevent="enrolInCourse(data.code)">
                         Enrol
                     </button>
                 </template>
