@@ -3,11 +3,11 @@ import 'dotenv/config.js';
 
 // 1. Configure Connection Options
 const access: PoolOptions = {
-    host: process.env.MYSQL_HOST ?? '',
     user: process.env.MYSQL_USER ?? '',
     password: process.env.MYSQL_PASSWORD ?? '',
     database: process.env.MYSQL_DATABASE ?? '',
-    socketPath: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`
+    socketPath: process.env.NODE_ENV === 'production' ? `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`: '',
+    host: process.env.NODE_ENV !== 'production' ? (process.env.MYSQL_HOST ?? 'localhost') : '',
 };
 
 // 2. Create the Connection Pool
