@@ -146,7 +146,7 @@ export const deleteEnrolment = async (req: Request, res: Response, next: NextFun
         await pool.execute(query, [id, code]);
 
         // But send 204 as we do not need any data, but if successful, that data must be wiped out from the state.
-        return res.status(204);
+        return res.status(204).send();
     } catch (err: any) {
         return next(new HttpError(err));
     }
