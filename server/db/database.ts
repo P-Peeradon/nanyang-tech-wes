@@ -5,10 +5,17 @@ import 'dotenv/config.js';
 const access: PoolOptions = {
     user: process.env.MYSQL_USER ?? '',
     password: process.env.MYSQL_PASSWORD ?? '',
-    database: process.env.MYSQL_DATABASE ?? '',
-    socketPath: process.env.NODE_ENV === 'production' ? `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`: '',
-    host: process.env.NODE_ENV !== 'production' ? (process.env.MYSQL_HOST ?? 'localhost') : '',
-};
+    database: process.env.MYSQL_DATABASE ?? ''
+}
+
+// Check if running on App Engine in production AND the secure connection name is available
+if (process.env.NODE_ENV === 'production' && process.env.CLOUD_SQL_CONNECTION_NAME) {
+    // *** FIX: Use socketPath for secure internal connection ***
+    access.socketPath = `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`;
+} else {
+    // Local development/testing (using Auth Proxy or local MySQL server)
+    access.host = process.env.MYSQL_HOST ?? 'localhost'; 
+}
 
 // 2. Create the Connection Pool
 let pool: Pool;
