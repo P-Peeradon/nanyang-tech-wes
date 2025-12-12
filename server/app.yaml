@@ -10,5 +10,5 @@ env_variables:
     MYSQL_USER: 'nanyang60'
     MYSQL_PASSWORD: 'NTUSingapore+60'
     MYSQL_DATABASE: 'nanyang_stars'
-    MYSQL_SOCKET: 'mock-ntu-wes:asia-southeast1:root'
+    CLOUD_SQL_CONNECTION_NAME: 'mock-ntu-wes:asia-southeast1:root'
     API_PORT: 8080
