@@ -18,9 +18,18 @@ import ProfileCard from '../components/ProfileCard.vue';
 import AcademicProfileCard from '../components/AcademicProfileCard.vue';
 import EventCalendar from '../components/EventCalendar.vue';
 import { studentStore } from '../stores/profile';
+import { onBeforeUnmount, onMounted } from 'vue';
 
 const studentState = studentStore();
 const NanyangID: string = localStorage.getItem('studentId') ?? '';
+
+onMounted(() => {
+    studentState.getStudentProfile();
+});
+
+onBeforeUnmount(() => {
+    studentState.clearStudentMemory();
+})
 </script>
 
 <style></style>

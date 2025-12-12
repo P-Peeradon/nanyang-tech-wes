@@ -23,5 +23,9 @@ export const studentStore = defineStore('student', () => {
 
     }
 
-    return {studentData, getStudentProfile};
+    async function clearStudentMemory() {
+        studentData.value = null;
+    }
+
+    return {studentData, getStudentProfile, clearStudentMemory};
 })
