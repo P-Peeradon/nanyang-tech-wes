@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { enrolmentStore } from '../stores/stars';
+import { enrolmentStore, courseStore } from '../stores/stars';
 import axios from 'axios';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -32,32 +32,16 @@ import type { IEnrolment } from '../../../server/utility/enrolment';
 import type { ICourse } from '../../../server/utility/course';
 
 const enrolmentState = enrolmentStore();
-const enrols = computed<object[]>(() => {
-    return enrolmentState.myEnrolment.map((enrolment: IEnrolment) => {
-        return enrolment.toJSON();
-    });
-});
-const classes = computed<object[]>(() => {
-    return enrolmentState.coursesData.map((course: ICourse) => {
-        return course.toJSON();
-    });
-});
+const courseState = courseStore();
 
 const displayedEnrolment = computed<object[]>(() => {
-    if (enrols.value.length !== classes.value.length) {
-        // Handle error or return an empty array if lengths don't match
-        console.error("The 'enrols' and 'classes' arrays have different lengths.");
-        return [];
-    }
+    return enrolmentState.myEnrolment.map((enrol: IEnrolment) => {
+        // Course that match the code
+        const course = courseState.allCourses.find((course: ICourse) => course.code === enrol.courseCode)
 
-    return enrols.value.map((enrolmentObject: object, index: number) => {
-        const classObject = classes.value[index];
-
-        // 1. Using the spread syntax (...) to merge properties
-        // This creates a new object containing all properties from both objects.
         return {
-            ...enrolmentObject,
-            ...classObject
+            ...enrol.toJSON(),
+            ...course?.toJSON()
         };
     });
 });

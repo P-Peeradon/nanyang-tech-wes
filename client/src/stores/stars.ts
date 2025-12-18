@@ -1,7 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
-import { Course, type ICourse } from '../../../server/utility/course.ts'
+import { ref } from "vue";
+import { Course } from '../../../server/utility/course.ts'
 import { Enrolment } from '../../../server/utility/enrolment.ts'
 
 export const courseStore = defineStore('course', () => {
@@ -25,25 +25,11 @@ export const courseStore = defineStore('course', () => {
         }
     }
 
-    function resolveCourse(courseCode: string): ICourse {
-
-        const returnedCourse: ICourse = allCourses.value.find((course) => {
-            return course.code === courseCode;
-        }) ?? new Course('XX0000', 'Unknown', 0);
-
-        return returnedCourse;
-    }
-
-    return { allCourses, getAllCourses, resolveCourse };
+    return { allCourses, getAllCourses };
 });
 
 export const enrolmentStore = defineStore('enrolment', () => {
-    const courseState = courseStore();
-
     const myEnrolment = ref<Enrolment[]>([]); // Only the present semester.
-    const coursesData = computed<ICourse[]>(() => {
-        return myEnrolment.value.map((enrol) => courseState.resolveCourse(enrol.courseCode));
-    });
 
     async function getMyEnrolment() {
 
@@ -72,5 +58,5 @@ export const enrolmentStore = defineStore('enrolment', () => {
 
     }
 
-    return { myEnrolment, coursesData, getMyEnrolment };
+    return { myEnrolment, getMyEnrolment };
 })
