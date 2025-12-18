@@ -4,8 +4,9 @@
         <div class="my-10"></div>
         <DataTable
             :value="displayedEnrolment"
+            dataKey="courseCode"
             showGridlines
-            table-style="min-width: 50px"
+            table-style="min-width: 40px"
             :rows="5"
         >
             <Column field="courseCode" header="Course Code"></Column>
@@ -13,7 +14,7 @@
             <Column field="remark" header="Remark"></Column>
             <Column>
                 <template #body="{ data }">
-                    <button class="danger-button" @click.prevent="dropCourse(data.courseCode)">
+                    <button class="danger-button" @click.prevent="dropCourse(data)">
                         Drop
                     </button>
                 </template>
@@ -47,6 +48,8 @@ const displayedEnrolment = computed<object[]>(() => {
 });
 
 const dropCourse = async (code: string) => {
+    alert("Delete: " + code);
+
     try {
         const token = localStorage.getItem('authToken');
         const id = localStorage.getItem('studentId');
@@ -60,11 +63,16 @@ const dropCourse = async (code: string) => {
         });
 
         // Delete that enrolment entry
-        enrolmentState.myEnrolment = enrolmentState.myEnrolment.filter((enrolment: IEnrolment) => {
-            return enrolment.courseCode.toUpperCase() !== code.toUpperCase();
-        });
+        const targetIndex: number = enrolmentState.myEnrolment.findIndex(
+            e => e.courseCode.trim() === code.trim()
+        );
 
-        console.log("After:", enrolmentState.myEnrolment.length);
+        if (targetIndex !== -1) {
+            // In-place mutation
+            enrolmentState.myEnrolment.splice(targetIndex, 1);
+        } else {
+            console.warn("Cannot find code in state");
+        }
 
     } catch (err) {
         console.error(err);
