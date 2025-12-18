@@ -51,6 +51,8 @@ const dropCourse = async (code: string) => {
         const token = localStorage.getItem('authToken');
         const id = localStorage.getItem('studentId');
 
+        console.log("Before:", enrolmentState.myEnrolment.length);
+
         await axios.delete(`${import.meta.env.VITE_API_URL}/api/enrolment/${id}/${code}`, {
             withCredentials: true, headers: {
                 authorization: `Bearer ${token}`
@@ -59,8 +61,10 @@ const dropCourse = async (code: string) => {
 
         // Delete that enrolment entry
         enrolmentState.myEnrolment = enrolmentState.myEnrolment.filter((enrolment: IEnrolment) => {
-            return enrolment.courseCode !== code;
+            return enrolment.courseCode.toUpperCase() !== code.toUpperCase();
         });
+
+        console.log("After:", enrolmentState.myEnrolment.length);
 
     } catch (err) {
         console.error(err);
