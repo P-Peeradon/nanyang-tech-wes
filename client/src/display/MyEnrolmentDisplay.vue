@@ -14,7 +14,7 @@
             <Column field="remark" header="Remark"></Column>
             <Column>
                 <template #body="{ data }">
-                    <button class="danger-button" @click.prevent="dropCourse(data)">
+                    <button class="danger-button" @click.prevent="dropCourse(data.courseCode)">
                         Drop
                     </button>
                 </template>
