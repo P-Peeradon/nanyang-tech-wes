@@ -74,7 +74,7 @@ const dropCourse = async (code: string) => {
         });
 
         // Delete that enrolment entry
-        enrolmentState.myEnrolment.filter((enrolment: IEnrolment) => {
+        enrolmentState.myEnrolment = enrolmentState.myEnrolment.filter((enrolment: IEnrolment) => {
             return enrolment.courseCode !== code;
         });
 
