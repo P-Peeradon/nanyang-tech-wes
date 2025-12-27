@@ -5,7 +5,8 @@ import 'dotenv/config.js';
 const access: PoolOptions = {
     user: process.env.MYSQL_USER ?? '',
     password: process.env.MYSQL_PASSWORD ?? '',
-    database: process.env.MYSQL_DATABASE ?? ''
+    database: process.env.MYSQL_DATABASE ?? '',
+    timezone: '+8:00'
 }
 
 // Check if running on App Engine in production AND the secure connection name is available

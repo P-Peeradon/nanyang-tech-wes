@@ -34,8 +34,7 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
 
         req.user = (info as JWTPayload);
     });
-    
-    console.log(req);
+
     next();
 }
 

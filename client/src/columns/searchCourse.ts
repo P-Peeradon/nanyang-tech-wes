@@ -53,7 +53,7 @@ const columns: ColumnDef<ICourse>[] = [
         cell: ({ row }) => h('button', {
             class: 'primary-button',
             onClick: (e: Event) => {
-                e.stopPropagation();
+                e.preventDefault();
                 enrolInCourse(row.original.code);
             }
         }, 'Enrol')
