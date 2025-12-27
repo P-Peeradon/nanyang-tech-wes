@@ -19,6 +19,10 @@ export class Timetable implements ITimetable {
         return this._studentId;
     };
 
+    get option(): number {
+        return this._option
+    }
+
     get academicYear(): number {
         return this._academicYear;
     };
@@ -34,6 +38,7 @@ export class Timetable implements ITimetable {
 
 export interface ITimetable {
     readonly studentId: string;
+    readonly option: number;
     readonly academicYear: number;
     readonly semester: number;
     readonly indices: Offer[];

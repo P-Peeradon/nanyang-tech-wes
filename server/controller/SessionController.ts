@@ -4,7 +4,6 @@ import { HttpError } from "../model/error.js";
 import type { FeatureRoute, Credential } from "../nanyang.js";
 import pool from "../db/database.js";
 import bcrypt from 'bcryptjs';
-import "dotenv/config.js";
 
 // Handle Login User
 // POST /login
