@@ -28,6 +28,7 @@ const dropCourse = async (code: string) => {
             }
         });
 
+        enrolmentState.removeEnrolment(code);
 
     } catch (err) {
         console.error(err);

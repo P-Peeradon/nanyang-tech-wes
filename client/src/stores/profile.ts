@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { Student } from '../../../server/utility/student.ts'
 import { Offer } from '../../../server/utility/offer.ts'
-import { Enrolment } from '../../../server/utility/enrolment.ts'
+import { Enrolment, type IEnrolment } from '../../../server/utility/enrolment.ts'
 import axios from "axios";
 
 export const studentStore = defineStore('student', () => {
@@ -62,7 +62,15 @@ export const enrolmentStore = defineStore('enrolment', () => {
 
     }
 
-    return { myEnrolment, getMyEnrolment };
+    function addEnrolment(newEnrolment: Enrolment) {
+        myEnrolment.value.push(newEnrolment);
+    }
+
+    function removeEnrolment(code: string) {
+        myEnrolment.value = myEnrolment.value.filter((enrol: IEnrolment) => enrol.courseCode !== code);
+    }
+
+    return { myEnrolment, getMyEnrolment, addEnrolment, removeEnrolment };
 });
 
 export const timetableStore = defineStore('timetable', () => {

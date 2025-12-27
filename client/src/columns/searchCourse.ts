@@ -24,7 +24,7 @@ const enrolInCourse = async (code: string) => {
 
         const { data } = response;
 
-        enrolmentState.myEnrolment.push(new Enrolment(data.studentId, data.courseCode, data.year, data.semester));
+        enrolmentState.addEnrolment(new Enrolment(data.studentId, data.courseCode, data.year, data.semester));
 
     } catch (err) {
         console.error(err);
