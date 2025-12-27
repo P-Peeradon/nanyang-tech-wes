@@ -12,7 +12,7 @@
                 <input type="text" name="code" id="code" v-model="title" />
             </div>
         </div>
-
+        <!--
         <DataTable
             :value="courses"
             showGridlines
@@ -32,21 +32,55 @@
                 </template>
             </Column>
         </DataTable>
+    -->
+
+    <div>
+        <Table>
+            <TableHeader>
+                <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+                    <TableHead v-for="header in headerGroup.headers" :key="header.id">
+                        <FlexRender
+                            v-if="!header.isPlaceholder"
+                            :render="header.column.columnDef.header"
+                            :props="header.getContext()"
+                        />
+                    </TableHead>
+                </TableRow>
+            </TableHeader>
+            <!-- Data Exist-->
+            <TableBody>
+                <template v-if="table.getRowModel().rows?.length">
+                    <TableRow v-for="row in table.getRowModel().rows" :key="row.id">
+                        <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
+                            <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
+                        </TableCell>
+                    </TableRow>
+                </template>
+                <template v-else>
+                    <TableCell :colspan="columns.length" class="h-24 text-center">No results.</TableCell>
+                </template>
+            </TableBody>
+        </Table>
+    </div>
     </form>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
 import { courseStore } from '../stores/stars';
-import { enrolmentStore } from '../stores/profile';
-import axios from 'axios';
 import { type ICourse } from '../../../server/utility/course';
-import { Enrolment } from '../../../server/utility/enrolment';
+import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table';
+import columns from '@/columns/searchCourse'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 
 const courseState = courseStore();
-const enrolmentState = enrolmentStore();
 
 const code = ref<string>('');
 const title = ref<string>('');
@@ -63,29 +97,11 @@ const courses = computed<ICourse[]>(() => {
     })
 });
 
-const enrolInCourse = async (code: string) => {
-    const NTUid = localStorage.getItem('studentId');
-    const token = localStorage.getItem('authToken');
-
-    // Use API to create enrolment.
-    try {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/enrolment`, {
-            studentId: NTUid,
-            courseCode: code,
-        },{
-            withCredentials: true, headers: {
-                authorization: `Bearer ${token}`
-            }
-        });
-
-        const { data } = response;
-
-        enrolmentState.myEnrolment.push(new Enrolment(data.studentId, data.courseCode, data.year, data.semester));
-
-    } catch (err) {
-        console.error(err);
-    }
-}
+const table = useVueTable({
+    get data() { return courses.value },
+    columns,
+    getCoreRowModel: getCoreRowModel()
+});
 
 </script>
 
