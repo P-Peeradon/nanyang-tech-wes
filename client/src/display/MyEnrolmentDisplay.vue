@@ -24,7 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { enrolmentStore, courseStore } from '../stores/stars';
+import { courseStore } from '../stores/stars';
+import { enrolmentStore } from '../stores/profile';
 import axios from 'axios';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';

@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { Student } from '../../../server/utility/student.ts'
 import { Offer } from '../../../server/utility/offer.ts'
+import { Enrolment } from '../../../server/utility/enrolment.ts'
 import axios from "axios";
 
 export const studentStore = defineStore('student', () => {
@@ -29,6 +30,39 @@ export const studentStore = defineStore('student', () => {
     }
 
     return {studentData, getStudentProfile, clearStudentMemory};
+});
+
+export const enrolmentStore = defineStore('enrolment', () => {
+    const myEnrolment = ref<Enrolment[]>([]); // Only the present semester.
+
+    async function getMyEnrolment() {
+
+        const token: string | null = localStorage.getItem('authToken');
+        const NanyangID: string | null = localStorage.getItem('studentId');
+
+        try {
+
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/students/${NanyangID}/enrolment`, {
+                withCredentials: true, headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
+
+            if (!response?.data || !Array.isArray(response.data)) {
+                throw new Error("Data does not exist.");
+            }
+
+            myEnrolment.value = response.data.map(enrol => {
+                return new Enrolment(NanyangID ?? '', enrol.cos_code, enrol.enrol_year, enrol.enrol_semester)
+            });
+
+        } catch (err) {
+            console.error(err);
+        }
+
+    }
+
+    return { myEnrolment, getMyEnrolment };
 });
 
 export const timetableStore = defineStore('timetable', () => {

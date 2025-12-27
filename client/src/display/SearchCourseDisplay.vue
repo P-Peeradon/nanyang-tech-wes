@@ -39,7 +39,8 @@
 import { computed, ref } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import { courseStore, enrolmentStore } from '../stores/stars';
+import { courseStore } from '../stores/stars';
+import { enrolmentStore } from '../stores/profile';
 import axios from 'axios';
 import { type ICourse } from '../../../server/utility/course';
 import { Enrolment } from '../../../server/utility/enrolment';

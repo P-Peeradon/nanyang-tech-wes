@@ -2,7 +2,7 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { Course } from '../../../server/utility/course.ts'
-import { Enrolment } from '../../../server/utility/enrolment.ts'
+import { Offer } from "../../../server/utility/offer.ts";
 
 export const courseStore = defineStore('course', () => {
     const allCourses = ref<Course[]>([]); // Collect all courses taught at NTU.
@@ -28,35 +28,7 @@ export const courseStore = defineStore('course', () => {
     return { allCourses, getAllCourses };
 });
 
-export const enrolmentStore = defineStore('enrolment', () => {
-    const myEnrolment = ref<Enrolment[]>([]); // Only the present semester.
-
-    async function getMyEnrolment() {
-
-        const token: string | null = localStorage.getItem('authToken');
-        const NanyangID: string | null = localStorage.getItem('studentId');
-
-        try {
-
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/students/${NanyangID}/enrolment`, {
-                withCredentials: true, headers: {
-                    authorization: `Bearer ${token}`
-                }
-            });
-
-            if (!response?.data || !Array.isArray(response.data)) {
-                throw new Error("Data does not exist.");
-            }
-
-            myEnrolment.value = response.data.map(enrol => {
-                return new Enrolment(NanyangID ?? '', enrol.cos_code, enrol.enrol_year, enrol.enrol_semester)
-            });
-
-        } catch (err) {
-            console.error(err);
-        }
-
-    }
-
-    return { myEnrolment, getMyEnrolment };
-})
+// All offer in Nanyang
+export const offerStore = defineStore('offer', () => {
+    const offers = ref<Offer[]>([]);
+});
