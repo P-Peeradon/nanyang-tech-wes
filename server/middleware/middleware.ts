@@ -1,7 +1,6 @@
 import type { Request, Response, NextFunction } from "express"
 import { HttpError } from "../model/error.js";
 import jwt from 'jsonwebtoken';
-import "dotenv/config.js";
 import type { JWTPayload } from "../nanyang.js";
 
 declare global {
