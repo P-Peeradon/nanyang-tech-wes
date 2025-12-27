@@ -2,12 +2,14 @@ import type { Offer } from "./offer.js";
 
 export class Timetable implements ITimetable {
     private _studentId!: string;
+    private _option!: number;
     private _academicYear: number;
     private _semester: number;
     private _indices?: Offer[];
 
-    constructor (studentId: string, academicYear: number, semester: number, indices?: Offer[]) {
+    constructor (studentId: string, option: number, academicYear: number, semester: number, indices?: Offer[]) {
         this._studentId = studentId;
+        this._option = option;
         this._academicYear = academicYear;
         this._semester = semester;
         this._indices = indices ?? [];
