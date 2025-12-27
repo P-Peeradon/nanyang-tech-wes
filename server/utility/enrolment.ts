@@ -40,6 +40,7 @@ export class Enrolment implements IEnrolment {
             courseCode: this._courseCode,
             year: this._year,
             semester: this._semester,
+            remark: this._remark,
         }
     };
 

@@ -5,9 +5,9 @@ import { Enrolment } from '../../../server/utility/enrolment';
 import { enrolmentStore } from '@/stores/profile';
 import axios from 'axios';
 
-const enrolmentState = enrolmentStore();
-
 const enrolInCourse = async (code: string) => {
+    const enrolmentState = enrolmentStore();
+
     const NTUid = localStorage.getItem('studentId');
     const token = localStorage.getItem('authToken');
 
