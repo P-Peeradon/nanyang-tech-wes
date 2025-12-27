@@ -51,7 +51,7 @@ const columns: ColumnDef<EnrolDisplay>[] = [
         id: "drop-action",
         header: "",
         cell: ({ row }) => h('button', {
-            class: 'primary-button',
+            class: 'danger-button',
             onClick: (e: Event) => {
                 e.stopPropagation();
                 dropCourse(row.original.courseCode);
