@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { Student } from '../../../server/utility/student.ts'
+import { Offer } from '../../../server/utility/offer.ts'
 import axios from "axios";
 
 export const studentStore = defineStore('student', () => {
@@ -28,4 +29,18 @@ export const studentStore = defineStore('student', () => {
     }
 
     return {studentData, getStudentProfile, clearStudentMemory};
-})
+});
+
+export const timetableStore = defineStore('timetable', () => {
+    const selectedOffers = ref<Offer[]>();
+
+    async function getSelectedOffer() {
+        //pass
+    }
+
+    async function changeSection(courseCode: string, newSection: number) {
+        // pass
+    }
+
+    return { selectedOffers, getSelectedOffer, changeSection }
+});
