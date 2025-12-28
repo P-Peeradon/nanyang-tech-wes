@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "esbuild index.ts --bundle --platform=node --outfile=dist/index.js",
-    "dev": "bun --watch index.ts",
-    "start": "node ./dist/index.js"
+    "dev": "tsx watch index.ts",
+    "start": "node ./dist/index.js",
+    "gcp-build": "npm run build"
   },
   "keywords": [],
   "author": "Peeradon S.",
@@ -19,6 +20,7 @@
     "@types/node": "^24.10.0",
     "esbuild": "^0.27.2",
     "eslint": "^9.39.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-fileupload": "^1.5.2",
     "jsonwebtoken": "^9.0.2",

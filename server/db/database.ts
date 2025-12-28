@@ -1,11 +1,12 @@
 import mysql, { createPool, type Pool, type PoolOptions } from 'mysql2/promise.js';
+import 'dotenv/config'
 
 // 1. Configure Connection Options
 const access: PoolOptions = {
     user: process.env.MYSQL_USER ?? '',
     password: process.env.MYSQL_PASSWORD ?? '',
     database: process.env.MYSQL_DATABASE ?? '',
-    timezone: 'Asia/Singapore'
+    timezone: '+08:00'
 }
 
 // Check if running on App Engine in production AND the secure connection name is available

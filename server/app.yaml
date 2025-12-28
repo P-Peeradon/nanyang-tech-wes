@@ -1,5 +1,6 @@
 runtime: nodejs20
 instance_class: F4
+env: flex
 automatic_scaling:
     min_instances: 1
     max_instances: 2 # Keeps costs low for testing
