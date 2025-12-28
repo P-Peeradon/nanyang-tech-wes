@@ -41,7 +41,7 @@ export const offerStore = defineStore('offer', () => {
             }
 
             offers.value = response.data.map(offer =>
-                new Offer(offer.cos_code, offer.off_section, offer.off_day, offer.off_start, offer.off_end, offer.off_capacity)
+                new Offer(offer.cos_code, offer.off_section, offer.off_day, new Date(offer.off_start), new Date(offer.off_end), offer.off_capacity)
             )
         } catch (err) {
             console.error(err);

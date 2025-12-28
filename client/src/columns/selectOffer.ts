@@ -13,11 +13,13 @@ const columns: ColumnDef<IOffer>[] = [
     },
     {
         accessorKey: "timeStart",
-        header: "Start"
+        header: "Start",
+        accessorFn: (row) => row.formattedTimeStart,
     },
     {
         accessorKey: "timeEnd",
-        header: "End"
+        header: "End",
+        accessorFn: (row) => row.formattedTimeEnd,
     },
 ];
 

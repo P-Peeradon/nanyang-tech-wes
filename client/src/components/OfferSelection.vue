@@ -4,11 +4,13 @@
         <h2 class="offer-header">Select your course</h2>
         <div class="my-3"></div>
         <select class="text-lg border rounded-md" v-model="code" name="course" id="code">
-            <option value="" default>Course</option>
+            <option value="" default></option>
             <option v-for="enrol in enrolDisplay" :key="enrol.courseCode" :value="enrol.courseCode">
-                <p class="text-lg">{{ enrol.courseCode }} - {{ enrol.title }}</p>
+                {{ enrol.courseCode }} - {{ enrol.title }}
             </option>
         </select>
+
+        <br />
 
         <!-- Given that course code is the must, provide all sections taught there-->
         <Table>
@@ -27,7 +29,11 @@
         <TableBody>
             <!-- Data Exist-->
             <template v-if="table.getRowModel().rows?.length">
-                <TableRow v-for="row in table.getRowModel().rows" :key="row.id">
+                <TableRow
+                    v-for="row in table.getRowModel().rows"
+                    :key="row.id"
+                    @click="() => console.log(row.original)"
+                >
                     <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
                         <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
                     </TableCell>
@@ -106,6 +112,7 @@ const table = useVueTable({
 
 onMounted(async () => {
     enrolmentState.getMyEnrolment();
+    console.log(offerState.offers);
 });
 
 onBeforeUnmount(() => {
