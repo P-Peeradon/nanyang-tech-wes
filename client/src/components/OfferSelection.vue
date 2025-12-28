@@ -48,7 +48,7 @@
 <script lang="ts" setup>
 import { enrolmentStore } from '@/stores/profile';
 import { courseStore, offerStore } from '@/stores/stars';
-import { onBeforeUnmount, onMounted, ref, computed } from 'vue';
+import { onBeforeUnmount, onMounted, ref, computed, watch } from 'vue';
 import type { ICourse } from '../../../server/utility/course';
 import type { IEnrolment } from '../../../server/utility/enrolment';
 import {
@@ -65,6 +65,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import type { IOffer } from '../../../server/utility/offer';
 
 // All subject that the student enrols (after confirmation).
 // User select timetable -> offer.
@@ -86,10 +87,18 @@ const enrolDisplay = computed<enrolWithTitle[]>(() => {
     } );
 });
 
+const offerDisplay = ref<IOffer[]>([])
 
+watch(code, (newVal: string) => {
+    if (newVal !== "") {
+        offerDisplay.value = offerState.filterByCourse(newVal);
+    } else {
+        offerDisplay.value = [];
+    }
+});
 
 const table = useVueTable({
-    get data() { return offerState.filterByCourse(code.value) },
+    get data() { return offerDisplay.value },
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel()
