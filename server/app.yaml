@@ -1,9 +1,9 @@
-runtime: nodejs20
+runtime: nodejs24
 instance_class: F4
-env: flex
-automatic_scaling:
-    min_instances: 1
-    max_instances: 2 # Keeps costs low for testing
+env: standard
+# CRITICAL: This enables the Unix Socket bridge in Standard Environment
+beta_settings:
+  cloud_sql_instances: "mock-ntu-wes:asia-southeast1:nanyang-registrar"
 env_variables:
     NODE_ENV: 'production'
     # Add your DB connection strings here, NOT in .env files
