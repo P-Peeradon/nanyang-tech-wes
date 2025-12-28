@@ -15,24 +15,39 @@ declare global {
 function transformSqlTimes(obj: object | Array<any>, referenceDate: string = '1970-01-01'): any {
     const SQL_TIME_REGEX = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
     
+    // 1. Handle Null or non-objects immediately
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+
+    // 2. DO NOT recurse into Date objects (Fixes the infinite loop)
+    if (obj instanceof Date) {
+        return obj;
+    }
+
     if (Array.isArray(obj)) {
         return obj.map((item) => transformSqlTimes(item, referenceDate));
-    } else if (obj !== null && typeof obj === 'object') {
-        const record = obj as Record<string, any>;
-        
-        for (const key in record) {
-            const value: any = record[key]; 
+    }
 
-            if (typeof value === 'string' && SQL_TIME_REGEX.test(value)) {
-                // Transform to UTC Date (assuming SGT context for Jurong West)
-                record[key] = DateTime.fromISO(`${referenceDate}T${value}`, { 
-                    zone: 'Asia/Singapore' 
-                }).toJSDate();
-            } else if (typeof value === 'object') {
-                record[key] = transformSqlTimes(value, referenceDate);
-            }
+    const record = obj as Record<string, any>;
+    
+    for (const key in record) {
+        if (!Object.prototype.hasOwnProperty.call(record, key)) continue;
+
+        const value = record[key];
+
+        if (typeof value === 'string' && SQL_TIME_REGEX.test(value)) {
+            // Transform to UTC Date
+            record[key] = DateTime.fromISO(`${referenceDate}T${value}`, { 
+                zone: 'Asia/Singapore' 
+            }).toJSDate();
+        } 
+        // 3. Only recurse if it's a plain object or array, NOT a Date
+        else if (value !== null && typeof value === 'object' && !(value instanceof Date)) {
+            record[key] = transformSqlTimes(value, referenceDate);
         }
     }
+
     return obj;
 
 }
@@ -76,7 +91,7 @@ export const errorHandler = (error: any, req: Request, res: Response, next: Next
 
 export const mysqlTimeHandler = (req: Request, res: Response, next: NextFunction) => {
     
-    const originalJson =  res.json;
+    const originalJson =  res.json.bind(res);
     
     res.json = function (body) {
         // 1. Cleverly scan and transform the entire body
