@@ -48,3 +48,12 @@ export interface JWTPayload {
     email: string;
     role: 'student' | 'admin' | 'staff'
 }
+
+export interface OfferProfile extends RowDataPacket {
+    cos_code: string, 
+    off_day: string, 
+    off_section: number, 
+    off_start: string, 
+    off_end: string,
+    off_capacity: number
+}

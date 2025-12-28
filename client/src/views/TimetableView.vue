@@ -1,7 +1,11 @@
 <template>
-    <div></div>
+    <div>
+        <TimetableDisplay />
+    </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TimetableDisplay from '@/display/TimetableDisplay.vue';
+</script>
 
 <style scoped></style>

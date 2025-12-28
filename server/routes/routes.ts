@@ -3,7 +3,8 @@ import express from 'express';
 import { fetchFeatures, loginUser, registerUser } from '../controller/SessionController.js'; 
 import { getStudent } from '../controller/UserController.js'
 import { getCourse, getCourses, getStudentEnrolments, createEnrolment, deleteEnrolment } from '../controller/RegistrationController.js';
-import { authenticateToken } from '../middleware/middleware.js';
+import { authenticateToken, mysqlTimeHandler } from '../middleware/middleware.js';
+import { getOffers } from '../controller/TimetableController.js';
 
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.get('/courses/:code', getCourse);
 router.post('/enrolment', authenticateToken, createEnrolment);
 router.delete('/enrolment/:id/:code', authenticateToken, deleteEnrolment);
 router.get('/students/:id/enrolment', authenticateToken, getStudentEnrolments);
+
+router.get('/offers', mysqlTimeHandler, getOffers);
 
 export default router;

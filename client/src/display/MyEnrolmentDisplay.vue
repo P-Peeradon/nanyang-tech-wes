@@ -87,8 +87,6 @@ const table = useVueTable({
     getPaginationRowModel: getPaginationRowModel()
 });
 
-
-
 onMounted(async () => {
     await enrolmentState.getMyEnrolment();
 });

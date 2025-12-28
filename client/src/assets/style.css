@@ -87,6 +87,9 @@
     h2.my-enrol-header {
         @apply text-gold-600 drop-shadow-rose-200;
     }
+    h2.offer-header {
+        @apply text-gold-500 drop-shadow-rose-200;
+    }
     .primary-button {
         @apply px-4 py-2 bg-imperial-600 text-white text-lg text-center font-semibold border-indigo-800 border-2 rounded-2xl items-center drop-shadow hover:bg-imperial-800 hover:border-blue-600 hover:cursor-pointer;
     }
@@ -143,5 +146,8 @@
     }
     h3.academic-card-header {
         @apply text-gold-300 ml-7 lg:ml-12 xl:ml-17 my-3 lg:my-9 xl:my-15;
+    }
+    form.offer {
+        @apply flex flex-col;
     }
 }

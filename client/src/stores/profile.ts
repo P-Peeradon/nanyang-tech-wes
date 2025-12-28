@@ -70,7 +70,11 @@ export const enrolmentStore = defineStore('enrolment', () => {
         myEnrolment.value = myEnrolment.value.filter((enrol: IEnrolment) => enrol.courseCode !== code);
     }
 
-    return { myEnrolment, getMyEnrolment, addEnrolment, removeEnrolment };
+    function clearEnrolment() {
+        myEnrolment.value = []
+    }
+
+    return { myEnrolment, getMyEnrolment, addEnrolment, removeEnrolment, clearEnrolment };
 });
 
 export const timetableStore = defineStore('timetable', () => {

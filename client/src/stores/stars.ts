@@ -2,7 +2,7 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { Course } from '../../../server/utility/course.ts'
-import { Offer } from "../../../server/utility/offer.ts";
+import { Offer, type IOffer } from "../../../server/utility/offer.ts";
 
 export const courseStore = defineStore('course', () => {
     const allCourses = ref<Course[]>([]); // Collect all courses taught at NTU.
@@ -31,4 +31,28 @@ export const courseStore = defineStore('course', () => {
 // All offer in Nanyang
 export const offerStore = defineStore('offer', () => {
     const offers = ref<Offer[]>([]);
+
+    async function getAllOffers() {
+        try {
+
+            const response =  await axios.get(`${import.meta.env.VITE_API_URL}/api/offers`);
+            if (!response?.data || !Array.isArray(response.data)) {
+                throw new Error("Invalid or empty data received from the API.");
+            }
+
+            offers.value = response.data.map(offer =>
+                new Offer(offer.cos_code, offer.off_section, offer.off_day, offer.off_start, offer.off_end, offer.off_capacity)
+            )
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    function filterByCourse(courseCode: string): IOffer[] {
+        return offers.value.filter((offer: IOffer) => {
+            return offer.courseCode.toUpperCase() === courseCode.toUpperCase();
+        })
+    };
+
+    return { offers, getAllOffers, filterByCourse };
 });

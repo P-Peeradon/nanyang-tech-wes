@@ -5,7 +5,7 @@ import { routeStore, timeStore } from './stores/direction';
 
 import DefaultLayout from './layouts/DefaultLayout.vue';
 import BlankLayout from './layouts/BlankLayout.vue';
-import { courseStore } from './stores/stars';
+import { courseStore, offerStore } from './stores/stars';
 
 // A map to link layout names (strings) to the actual component imports
 const layoutComponents: Record<string, Component> = {
@@ -17,6 +17,7 @@ const route: RouteLocationNormalizedLoaded = useRoute();
 const routeState = routeStore();
 const courseState = courseStore();
 const timeState = timeStore();
+const offerState = offerStore();
 
 const currentLayout: ComputedRef<Component> = computed(() => {
     // Get the layout name from the route meta, or default to 'DefaultLayout'
@@ -32,6 +33,7 @@ const currentLayoutProps = computed(() => {
 onMounted(() => {
     routeState.getAllRoutes();
     courseState.getAllCourses();
+    offerState.getAllOffers();
 
     timeState.intervalId = window.setInterval(() => {
         timeState.currentTime = new Date();

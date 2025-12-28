@@ -2,6 +2,7 @@ import type { Request, Response, NextFunction } from "express"
 import { HttpError } from "../model/error.js";
 import jwt from 'jsonwebtoken';
 import type { JWTPayload } from "../nanyang.js";
+import { DateTime } from 'luxon';
 
 declare global {
     namespace Express {
@@ -9,6 +10,31 @@ declare global {
             user?: JWTPayload
         }
     }
+}
+
+function transformSqlTimes(obj: object | Array<any>, referenceDate: string = '1970-01-01'): any {
+    const SQL_TIME_REGEX = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
+    
+    if (Array.isArray(obj)) {
+        return obj.map((item) => transformSqlTimes(item, referenceDate));
+    } else if (obj !== null && typeof obj === 'object') {
+        const record = obj as Record<string, any>;
+        
+        for (const key in record) {
+            const value: any = record[key]; 
+
+            if (typeof value === 'string' && SQL_TIME_REGEX.test(value)) {
+                // Transform to UTC Date (assuming SGT context for Jurong West)
+                record[key] = DateTime.fromISO(`${referenceDate}T${value}`, { 
+                    zone: 'Asia/Singapore' 
+                }).toJSDate();
+            } else if (typeof value === 'object') {
+                record[key] = transformSqlTimes(value, referenceDate);
+            }
+        }
+    }
+    return obj;
+
 }
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
@@ -46,4 +72,27 @@ export const errorHandler = (error: any, req: Request, res: Response, next: Next
     }
 
     res.status(statusCode).json({ name: error.name || "ServerError", message: message });
+}
+
+export const mysqlTimeHandler = (req: Request, res: Response, next: NextFunction) => {
+    
+    const originalJson =  res.json;
+    
+    res.json = function (body) {
+        // 1. Cleverly scan and transform the entire body
+        const transformedBody = transformSqlTimes(body);
+
+        // 2. Pass the modified body back to the original res.json
+        return originalJson.call(this, transformedBody);
+    };
+
+    next();
+}
+
+export const sanitizeMySQLTime = (req: Request, res: Response, next: NextFunction) => {
+    if (req.body) {
+        req.body = transformSqlTimes(req.body);
+    }
+    
+    next();
 }
