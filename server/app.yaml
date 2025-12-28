@@ -1,6 +1,7 @@
-runtime: nodejs24
+runtime: nodejs20
 instance_class: F4
 env: standard
+entrypoint: node dist/index.js
 # CRITICAL: This enables the Unix Socket bridge in Standard Environment
 beta_settings:
   cloud_sql_instances: "mock-ntu-wes:asia-southeast1:nanyang-registrar"
